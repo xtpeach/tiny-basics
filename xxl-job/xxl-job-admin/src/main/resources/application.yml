@@ -1,0 +1,153 @@
+# web
+server:
+  port: 31080
+  tomcat:
+    accept-count: 2000
+
+# 注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL:http://eureka_admin:eureka_admin1!3@127.0.0.1:8761/eureka/}
+    registry-fetch-interval-seconds: 5
+    instance-info-replication-interval-seconds: 5
+    initial-instance-info-replication-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+    lease-renewal-interval-in-seconds: 5
+
+# resources
+spring:
+  #application
+  application:
+    name: ${APPLICATION_NAME:xxl-job-admin}
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+
+  # datasource
+  datasource:
+    defaultDb: enable
+    driver: org.postgresql.Driver
+    url: ${DATASOURCE_URL}
+    repositoryName: ${DATASOURCE_REPOSITORY_NAME}
+    repositoryWord: ${DATASOURCE_REPOSITORY_WORD}
+    # datasource-pool
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: ${HIKARI_MINIMUM_IDLE:10}
+      maximum-pool-size: ${HIKARI_MAXIMUM_POOL_SIZE:30}
+      auto-commit: ${HIKARI_AUTO_COMMIT:true}
+      idle-timeout: ${HIKARI_IDLE_TIMEOUT:30000}
+      pool-name: HikariCP
+      max-lifetime: ${HIKARI_MAX_LIFETIME:900000}
+      connection-timeout: ${HIKARI_CONNECTION_TIMEOUT:10000}
+      connection-test-query: ${HIKARI_CONNECTION_TEST_QUERY:"SELECT 1"}
+      validation-timeout: ${HIKARI_VALIDATION_TIMEOUT:1000}
+
+  # jpa
+  jpa:
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO:update}
+    show-sql: ${HIBERNATE_SHOW_SQL:true}
+
+  # redis
+  redis:
+    host: ${REDIS_HOST:60.60.60.16}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:admin1!3}
+    database: ${REDIS_DATABASE:0}
+    jedis:
+      pool:
+        max-active: ${REDIS_POOL_ACTIVE:100}
+        max-wait: ${REDIS_POOL_MAX_WAIT:10s}
+        max-idle: ${REDIS_POOL_MAX_IDLE:20}
+        min-idle: ${REDIS_POOL_MIN_IDLE:10}
+  # mvc
+  mvc:
+    servlet:
+      load-on-startup: 0
+    static-path-pattern: /static/**
+
+  # freemarker
+  freemarker:
+    expose-spring-macro-helpers: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    prefer-file-system-access: true
+    allow-request-override: false
+    allow-session-override: false
+    check-template-location: true
+    cache: true
+    enabled: true
+    suffix: .ftl
+    charset: UTF-8
+    content-type: text/html
+    request-context-attribute: request
+    template-loader-path: classpath:/templates/
+    settings:
+      number_format: 0.##########
+
+  # xxl-job, email
+  mail:
+    host: smtp.qq.com
+    port: 25
+    username: xxx@qq.com
+    from: xxx@qq.com
+    password: xxx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+
+# mybatis
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml, classpath*:mapper/**/*.xml
+
+# logging
+logging:
+  level:
+    com.xtpeach.tiny.basics: debug
+
+# actuator/info
+management:
+  health:
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: info,health
+  endpoint:
+    health:
+      show-details: always #默认是never
+
+# xxl-job, access token
+xxl:
+  job:
+    accessToken:
+
+    # xxl-job, i18n (default is zh_CN, and you can choose "zh_CN", "zh_TC" and "en")
+    i18n: zh_CN
+
+    # xxl-job, triggerpool max size
+    triggerpool:
+      fast:
+        max: 200
+      slow:
+        max: 100
+
+    # xxl-job, log retention days
+    logretentiondays: 7
+
+# xls 初始化数据
+xxl-job:
+  xls:
+    init-data: ${XLS_INITDATA:true}

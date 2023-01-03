@@ -1,0 +1,71 @@
+#注册中心应用名称
+spring:
+  application:
+    name: eureka-server
+  #权限控制
+  security:
+    basic:
+      enabled: true
+    user:
+      name: ${EUREKA_USER_NAME:eureka_admin}
+      password: ${EUREKA_USER_PASSWORD:eureka_admin1!3}
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL:http://eureka_admin:eureka_admin1!3@127.0.0.1:8761/eureka/}
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    ##=========>基本参数<============
+    #是否开启自我保护模式，默认是开启的
+    enable-self-preservation: true
+    #每分钟需要收到的续约次数的阈值 server会根据某个应用注册时实例数，计算每分钟应收到的续约次数
+    #若收到的次数少于该阈值，server会关闭该租约，并禁止定时任务剔除失效的实例，保护注册信息
+    renewal-percent-threshold: 0.85
+    #指定updateRenewalThreshold定时任务的调度频率，来动态更新expectedNumberOfRenewsPerMin和numberOfRenewsPerMinThreshold值
+    renewal-threshold-update-interval-ms: 30000
+    #指定EvictionTask定时任务的调度频率，用于剔除过期的实例，默认是60秒执行一次
+    eviction-interval-timer-in-ms: 60000
+
+    ##=========>response cache参数<============
+    #是否使用只读的response-cache，默认是使用
+    use-read-only-response-cache: true
+    #设置CacheUpdateTask的调度时间间隔，用于从readWriteCacheMap更新数据到readOnlyCacheMap
+    #仅在use-read-only-response-cache设置为true是才生效
+    response-cache-update-interval-ms: 5000
+    #设置readWriteCacheMap的expireAfterWrite参数，指定写入多长时间后，cache过期
+    response-cache-auto-expiration-in-seconds: 180
+
+    ##=========>peer参数 eureka server节点间同步数据的配置<============
+    #指定peerUpdateTask调度的时间间隔，
+    #用于从配置文件刷新peerEurekaNodes节点之间的配置信息（eureka.client.serviceUrl相关的zone的配置）
+    #默认10分钟
+    peer-eureka-nodes-update-interval-ms: 10
+    #指定更新peer node状态的时间间隔，默认30秒更新各node间的状态信息
+    peer-eureka-status-refresh-time-interval-ms: 30000
+    ##=========>http参数<============
+    #server各node间连接超时时长，默认200毫秒，200毫秒没连接上server的其他节点，就会认为该node不可用
+    peer-node-connect-timeout-ms: 200
+    #从其他节点读取数据超时时间 ，默认200毫秒
+    peer-node-read-timeout-ms: 2000
+    #server的单个node连接池最大的活动连接数
+    peer-node-total-connections: 2000
+    #server的单个node每个hot能使用的最大连接数
+    peer-node-total-connections-per-host: 2000
+    #server的node连接池连接的空闲时间
+    peer-node-connection-idle-timeout-seconds: 30
+
+#    eureka集群配置
+#    $(EUREKA_CLIENT_SERVICEURL) -> http://admin:admin1!3@eureka-server-0.eureka-server-headless:18080/eureka/,http://admin:admin1!3@eureka-server-1.eureka-server-headless:18080/eureka/
+#    -Deureka.client.register-with-eureka=true
+#    -Deureka.client.fetch-registry=true
+#    -Deureka.client.service-url.default-zone=$(EUREKA_CLIENT_SERVICEURL)
+#    -Deureka.instance.instance-id=$(MY_POD_NAME)

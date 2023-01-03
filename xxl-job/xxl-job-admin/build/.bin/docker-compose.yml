@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  {project.name}:
+    container_name: {project.name}
+    image: {project.name}:{project.version}
+    privileged: true
+    restart: unless-stopped
+    ports:
+      - 31000:31000
+    environment:
+      JAVA_OPTS: -Xms1024m -Xmx1024m -Xmn400m -XX:MetaspaceSize=20M -XX:MaxMetaspaceSize=1024m -Xss512K -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=60 -XX:+CMSClassUnloadingEnabled -XX:+CMSParallelRemarkEnabled -XX:CMSFullGCsBeforeCompaction=9 -XX:+CMSClassUnloadingEnabled -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=5M
+      JAR_OPTS: --logging.path=/home/logs/
+    network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone:ro
+      - /home/logs:/home/logs

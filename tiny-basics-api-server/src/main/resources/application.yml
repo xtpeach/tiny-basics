@@ -1,0 +1,99 @@
+# 30000-32767
+server:
+  port: 31002
+  tomcat:
+    accept-count: 2000
+
+# 注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL:http://eureka_admin:eureka_admin1!3@127.0.0.1:8761/eureka/}
+    registry-fetch-interval-seconds: 5
+    instance-info-replication-interval-seconds: 5
+    initial-instance-info-replication-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+    lease-renewal-interval-in-seconds: 5
+
+# spring
+spring:
+  #application
+  application:
+    name: ${APPLICATION_NAME:basics-api-server}
+
+  #servlet
+  servlet:
+    multipart:
+      # 上传文件总的最大值
+      max-request-size: ${SERVLET_MUTIPART_MAX_REQUEST_SIZE:100MB}
+      # 单个文件的最大值
+      max-file-size: ${SERVLET_MUTIPART_MAX_FILE_SIZE:50MB}
+
+  # datasource
+  datasource:
+    defaultDb: enable
+    driver: org.postgresql.Driver
+    url: ${DATASOURCE_URL}
+    repositoryName: ${DATASOURCE_REPOSITORY_NAME}
+    repositoryWord: ${DATASOURCE_REPOSITORY_WORD}
+
+  # jpa
+  jpa:
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO:update}
+    show-sql: ${HIBERNATE_SHOW_SQL:true}
+
+  # redis
+  redis:
+    host: ${REDIS_HOST:60.60.60.16}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:admin1!3}
+    database: ${REDIS_DATABASE:0}
+    jedis:
+      pool:
+        max-active: ${REDIS_POOL_ACTIVE:100}
+        max-wait: ${REDIS_POOL_MAX_WAIT:10s}
+        max-idle: ${REDIS_POOL_MAX_IDLE:20}
+        min-idle: ${REDIS_POOL_MIN_IDLE:10}
+
+  # kafka
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+  # jackson
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+# mybatis
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml, classpath*:mapper/**/*.xml
+
+# actuator/info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health
+
+# xls 初始化数据
+api-server:
+  xls:
+    init-data: ${XLS_INITDATA:true}
+
+### xxl-job executor
+xxl:
+  job:
+    executor:
+      title: 基础接口服务
+      logpath: /home/logs/job-api-server-log
+      logretentiondays: 7
+
+# swagger开关
+swagger:
+  show: ${SWAGGER_SHOW:true}
