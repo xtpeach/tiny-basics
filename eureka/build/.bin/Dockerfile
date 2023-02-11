@@ -5,7 +5,7 @@
 ### 基础镜像，使用alpine操作系统，openjkd使用8u201
 FROM maven:3-jdk-8-alpine-add-font
 
-#作者
+#作�??
 MAINTAINER xtpeach
 
 #系统编码
@@ -15,7 +15,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 VOLUME /tmp
 
 #应用构建成功后的jar文件被复制到镜像内，名字也改成了app.jar
-ADD app/eureka-final-0.0.1-SNAPSHOT.jar app.jar
+ADD app/ithmp-eureka-server-0.0.1-SNAPSHOT.jar app.jar
 
 ENV JAVA_OPTS=${JAVA_OPTS} \
     JAR_OPTS=${JAR_OPTS}

@@ -2,10 +2,10 @@ package com.xtpeach.tiny.basics.common.config.db;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import com.xtpeach.tiny.basics.common.util.db.DecodeUtils;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -35,18 +35,41 @@ public class DataSourceConfig {
     private DefaultDataSourceProperties defaultDataSourceProperties;
 
     /**
+     * hikari 数据库连接池配置
+     */
+    @Resource
+    private HikariProperties hikariProperties;
+
+    /**
      * Bean default-database
      *
      * @return
      */
     @Bean(name = "default-database")
     public DataSource dataSource() {
-        return DataSourceBuilder.create()
-                .driverClassName(defaultDataSourceProperties.getDriver())
-                .url(DecodeUtils.decodeUrl(defaultDataSourceProperties.getUrl()))
-                .username(DecodeUtils.decodeUsername(defaultDataSourceProperties.getRepositoryName()))
-                .password(DecodeUtils.decodePassword(defaultDataSourceProperties.getRepositoryWord()))
-                .build();
+        HikariConfig hikariConfig = new HikariConfig();
+        // base config
+        hikariConfig.setDriverClassName(defaultDataSourceProperties.getDriver());
+        hikariConfig.setJdbcUrl(defaultDataSourceProperties.getUrl());
+
+        // 数据库用户名加密
+        hikariConfig.setUsername(defaultDataSourceProperties.getRepositoryName());
+        // 数据库密码加密
+        hikariConfig.setPassword(defaultDataSourceProperties.getRepositoryWord());
+
+        // hikari config
+        hikariConfig.setMinimumIdle(hikariProperties.getMinimumIdle());
+        hikariConfig.setMaximumPoolSize(hikariProperties.getMaximumPoolSize());
+        hikariConfig.setAutoCommit(hikariProperties.getAutoCommit());
+        hikariConfig.setIdleTimeout(hikariProperties.getIdleTimeout());
+        hikariConfig.setPoolName(hikariProperties.getPoolName());
+        hikariConfig.setMaxLifetime(hikariProperties.getMaxLifetime());
+        hikariConfig.setConnectionTimeout(hikariProperties.getConnectionTimeout());
+        hikariConfig.setConnectionTestQuery(hikariProperties.getConnectionTestQuery());
+        hikariConfig.setValidationTimeout(hikariProperties.getValidationTimeout());
+        HikariDataSource hikariDataSource = new HikariDataSource(hikariConfig);
+
+        return hikariDataSource;
     }
 
     /**

@@ -1,7 +1,7 @@
 #注册中心应用名称
 spring:
   application:
-    name: eureka-server
+    name: ithmp-eureka-server
   #权限控制
   security:
     basic:
@@ -64,7 +64,7 @@ eureka:
     peer-node-connection-idle-timeout-seconds: 30
 
 #    eureka集群配置
-#    $(EUREKA_CLIENT_SERVICEURL) -> http://admin:admin1!3@eureka-server-0.eureka-server-headless:18080/eureka/,http://admin:admin1!3@eureka-server-1.eureka-server-headless:18080/eureka/
+#    $(EUREKA_CLIENT_SERVICEURL) -> http://admin:admin1!3@ithmp-eureka-server-0.ithmp-eureka-server-headless:18080/eureka/,http://admin:admin1!3@ithmp-eureka-server-1.ithmp-eureka-server-headless:18080/eureka/
 #    -Deureka.client.register-with-eureka=true
 #    -Deureka.client.fetch-registry=true
 #    -Deureka.client.service-url.default-zone=$(EUREKA_CLIENT_SERVICEURL)

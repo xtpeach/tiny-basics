@@ -26,7 +26,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         "com.xtpeach.tiny.basics.api.server",
 
         // xxl job
-        "com.xxl.job"
+        "com.xxl.job",
+
+        // tiny-file
+        "com.xtpeach.tiny.file.controller",
+
+        // tiny-id
+        "com.xtpeach.tiny.id.config"
 })
 @MapperScan("com.xtpeach.tiny.basics.core.api.server.dao")
 /**
@@ -41,7 +47,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         "com.xtpeach.tiny.basics.core.api.server.repo"
 })
 @EnableFeignClients(basePackages = {
-        "com.xxl.job.core.biz.client"
+        // xxl-job
+        "com.xxl.job.core.biz.client",
+
+        // tiny-file
+        "com.xtpeach.tiny.file.feign",
+
+        // tiny-id
+        "com.xtpeach.tiny.id.feign"
 })
 @EnableScheduling
 @ServletComponentScan

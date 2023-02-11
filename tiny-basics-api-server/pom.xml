@@ -27,6 +27,20 @@
             <artifactId>tiny-basics-controller</artifactId>
         </dependency>
 
+        <!-- com-xtpeach [tiny-file-common] -->
+        <dependency>
+            <groupId>com.xtpeach</groupId>
+            <artifactId>tiny-file-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- com-xtpeach [tiny-id-common] -->
+        <dependency>
+            <groupId>com.xtpeach</groupId>
+            <artifactId>tiny-id-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <!-- xxl-job [xxl-job-core] -->
         <dependency>
             <groupId>com.xuxueli</groupId>

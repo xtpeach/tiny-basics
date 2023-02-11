@@ -1,6 +1,6 @@
 # 30000-32767
 server:
-  port: 31002
+  port: 31001
   tomcat:
     accept-count: 2000
 
@@ -22,7 +22,12 @@ eureka:
 spring:
   #application
   application:
-    name: ${APPLICATION_NAME:basics-api-server}
+    name: ${APPLICATION_NAME:xtpeach-basics-api-server}
+
+  #main
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
 
   #servlet
   servlet:
@@ -36,9 +41,21 @@ spring:
   datasource:
     defaultDb: enable
     driver: org.postgresql.Driver
-    url: ${DATASOURCE_URL}
-    repositoryName: ${DATASOURCE_REPOSITORY_NAME}
-    repositoryWord: ${DATASOURCE_REPOSITORY_WORD}
+    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/xxl_job}
+    repositoryName: ${DATASOURCE_REPOSITORY_NAME:postgres}
+    repositoryWord: ${DATASOURCE_REPOSITORY_WORD:postgres}
+    # datasource-pool
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: ${HIKARI_MINIMUM_IDLE:10}
+      maximum-pool-size: ${HIKARI_MAXIMUM_POOL_SIZE:30}
+      auto-commit: ${HIKARI_AUTO_COMMIT:true}
+      idle-timeout: ${HIKARI_IDLE_TIMEOUT:30000}
+      pool-name: HikariCP
+      max-lifetime: ${HIKARI_MAX_LIFETIME:900000}
+      connection-timeout: ${HIKARI_CONNECTION_TIMEOUT:10000}
+      connection-test-query: ${HIKARI_CONNECTION_TEST_QUERY:SELECT 1}
+      validation-timeout: ${HIKARI_VALIDATION_TIMEOUT:1000}
 
   # jpa
   jpa:
@@ -48,7 +65,7 @@ spring:
 
   # redis
   redis:
-    host: ${REDIS_HOST:60.60.60.16}
+    host: ${REDIS_HOST:127.0.0.1}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:admin1!3}
     database: ${REDIS_DATABASE:0}
@@ -61,7 +78,7 @@ spring:
 
   # kafka
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9093}
 
   # jackson
   jackson:

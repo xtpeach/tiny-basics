@@ -7,12 +7,7 @@ import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobRegistryEntity
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobGroupDao;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobInfoDao;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobRegistryDao;
-import com.xxl.job.admin.core.route.ExecutorRouteStrategyEnum;
 import com.xxl.job.admin.core.route.strategy.ExecutorRouteWeight;
-import com.xxl.job.admin.core.scheduler.MisfireStrategyEnum;
-import com.xxl.job.admin.core.scheduler.ScheduleTypeEnum;
-import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
-import com.xxl.job.core.glue.GlueTypeEnum;
 import com.xxl.job.core.registry.EurekaUpdateWeightManager;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
@@ -220,16 +215,16 @@ public class EurekaRegistryManager {
                     if (CollectionUtils.isEmpty(xxlJobInfoEntityList)) {
                         XxlJobInfoEntity xxlJobInfoEntity = new XxlJobInfoEntity();
                         xxlJobInfoEntity.setAuthor(serviceName);
-                        xxlJobInfoEntity.setExecutorBlockStrategy(StringUtils.upperCase(ExecutorBlockStrategyEnum.SERIAL_EXECUTION.getTitle()));
+                        xxlJobInfoEntity.setExecutorBlockStrategy(StringUtils.upperCase("SERIAL_EXECUTION"));
                         xxlJobInfoEntity.setExecutorHandler(jobHandler);
-                        xxlJobInfoEntity.setExecutorRouteStrategy(StringUtils.upperCase(ExecutorRouteStrategyEnum.WEIGHT.getTitle()));
+                        xxlJobInfoEntity.setExecutorRouteStrategy(StringUtils.upperCase("WEIGHT"));
                         xxlJobInfoEntity.setExecutorTimeout(0);
                         xxlJobInfoEntity.setGlueRemark("GLUE代码初始化");
-                        xxlJobInfoEntity.setGlueType(GlueTypeEnum.BEAN.getDesc());
+                        xxlJobInfoEntity.setGlueType("BEAN");
                         xxlJobInfoEntity.setJobDesc(serviceName + "-自动注册任务");
                         xxlJobInfoEntity.setJobGroup(xxlJobGroupEntity.getAppName());
-                        xxlJobInfoEntity.setMisfireStrategy(StringUtils.upperCase(MisfireStrategyEnum.DO_NOTHING.getTitle()));
-                        xxlJobInfoEntity.setScheduleType(StringUtils.upperCase(ScheduleTypeEnum.NONE.getTitle()));
+                        xxlJobInfoEntity.setMisfireStrategy(StringUtils.upperCase("DO_NOTHING"));
+                        xxlJobInfoEntity.setScheduleType(StringUtils.upperCase("NONE"));
                         xxlJobInfoEntity.setGlueUpdatetime(DateTime.now().toDate());
                         xxlJobInfoDao.insert(xxlJobInfoEntity);
                     }

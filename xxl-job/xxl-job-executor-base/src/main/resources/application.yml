@@ -1,6 +1,6 @@
 # web
 server:
-  port: 32081
+  port: 32001
   tomcat:
     accept-count: 2000
 
@@ -29,7 +29,7 @@ spring:
 
   # redis
   redis:
-    host: ${REDIS_HOST:60.60.60.16}
+    host: ${REDIS_HOST:127.0.0.1}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:admin1!3}
     database: ${REDIS_DATABASE:0}

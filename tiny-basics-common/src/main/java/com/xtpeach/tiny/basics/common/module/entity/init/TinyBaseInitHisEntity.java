@@ -14,7 +14,7 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 
 /**
- * 表名： tiny_basics_init_data_his
+ * 表名： xtpeach_tiny_basics_init_data_his
  * ------------------------------------------------------------
  * 字段：id varchar (32)              pk           主键编码
  * 字段：create_time timestamp (6)                 创建时间

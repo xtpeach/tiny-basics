@@ -1,21 +1,23 @@
 package com.xxl.job.admin.core.scheduler;
 
+import com.xxl.job.admin.core.util.I18nUtil;
+
 /**
  * @author xuxueli 2020-10-29 21:11:23
  */
 public enum ScheduleTypeEnum {
 
-    NONE("NONE"),
+    NONE(I18nUtil.getString("schedule_type_none")),
 
     /**
      * schedule by cron
      */
-    CRON("CRON"),
+    CRON(I18nUtil.getString("schedule_type_cron")),
 
     /**
      * schedule by fixed rate (in seconds)
      */
-    FIX_RATE("FIX RATE"),
+    FIX_RATE(I18nUtil.getString("schedule_type_fix_rate")),
 
     /**
      * schedule by fix delay (in seconds)， after the last time
