@@ -1,12 +1,12 @@
 package com.xxl.job.admin.controller;
 
 import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobGroupEntity;
-import com.xxl.job.admin.core.exception.XxlJobException;
-import com.xxl.job.admin.core.complete.XxlJobCompleter;
+import com.xxl.admin.core.exception.XxlJobException;
+import com.xxl.admin.core.complete.XxlJobCompleter;
 import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobInfoEntity;
 import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobLogEntity;
-import com.xxl.job.admin.core.scheduler.XxlJobScheduler;
-import com.xxl.job.admin.core.util.I18nUtil;
+import com.xxl.admin.core.scheduler.XxlJobScheduler;
+import com.xxl.admin.core.util.I18nUtil;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobGroupDao;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobInfoDao;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobLogDao;

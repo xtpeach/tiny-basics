@@ -51,10 +51,10 @@
         <xxl-job.version>2.3.1</xxl-job.version>
 
         <!-- dependency version properties -->
+        <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
         <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
         <spring-context.version>5.1.5.RELEASE</spring-context.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <netty-all.version>4.1.63.Final</netty-all.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
@@ -367,5 +367,26 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>eureka</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>nacos</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
 </project>

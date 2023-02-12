@@ -7,7 +7,9 @@ import org.apache.commons.collections4.list.CursorableLinkedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -20,14 +22,11 @@ import java.util.Map;
  * 通过 eureka 注册负载信息
  */
 @Component
+@ConditionalOnClass(EurekaClientAutoConfiguration.class)
 @ConditionalOnProperty(prefix = "xxl.job.executor", name = "title")
-public class EurekaUpdateWeightManager {
+public class EurekaUpdateWeightManager implements UpdateWeightManager {
 
     private final static Logger logger = LoggerFactory.getLogger(EurekaUpdateWeightManager.class);
-
-    public final static String EXECUTOR_WEIGHT = "executor_weight";
-    public final static String EXECUTOR_TITLE = "executor_title";
-    public final static String EXECUTOR_HANDLER = "executor_handler";
 
     @Value("${xxl.job.executor.title:springBootApplication}")
     private String groupTitle;
@@ -35,7 +34,7 @@ public class EurekaUpdateWeightManager {
     @Resource
     private EurekaClient eurekaClient;
 
-    public final static List<String> xxlJobHandlerList = new CursorableLinkedList<>();
+    private final static List<String> xxlJobHandlerList = new CursorableLinkedList<>();
 
     private boolean stop = false;
 
@@ -45,7 +44,7 @@ public class EurekaUpdateWeightManager {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                logger.info("开始周期更新eureka负载信息任务>>>>>>>>>>>>>>>>>>>>>>>");
+                logger.info("开始周期更新 eureka 负载信息任务>>>>>>>>>>>>>>>>>>>>>>>");
                 while (!stop) {
                     try {
                         updateWeight();
@@ -54,7 +53,7 @@ public class EurekaUpdateWeightManager {
                         logger.error(e.getMessage(), e);
                     }
                 }
-                logger.info("结束周期更新eureka负载信息任务>>>>>>>>>>>>>>>>>>>>>>>");
+                logger.info("结束周期更新 eureka 负载信息任务>>>>>>>>>>>>>>>>>>>>>>>");
             }
         });
         thread.setName("executor-weight-update-thread");
@@ -66,6 +65,9 @@ public class EurekaUpdateWeightManager {
         stop = true;
     }
 
+    /**
+     * 更新负载情况
+     */
     public void updateWeight() {
         int weight = OSUtils.calculateWeight();
         logger.debug(">>> eureka 更新负载信息，当前负载：{}", weight);
@@ -75,4 +77,10 @@ public class EurekaUpdateWeightManager {
         metaData.put(EXECUTOR_HANDLER, JSONArray.toJSONString(xxlJobHandlerList));
         eurekaClient.getApplicationInfoManager().registerAppMetadata(metaData);
     }
+
+    @Override
+    public void addXxlJobHandlerList(String handler) {
+        this.xxlJobHandlerList.add(handler);
+    }
+
 }

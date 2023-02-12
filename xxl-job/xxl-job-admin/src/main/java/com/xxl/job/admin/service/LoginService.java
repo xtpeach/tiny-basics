@@ -1,9 +1,9 @@
 package com.xxl.job.admin.service;
 
 import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobUserEntity;
-import com.xxl.job.admin.core.util.CookieUtil;
-import com.xxl.job.admin.core.util.I18nUtil;
-import com.xxl.job.admin.core.util.JacksonUtil;
+import com.xxl.admin.core.util.CookieUtil;
+import com.xxl.admin.core.util.I18nUtil;
+import com.xxl.admin.core.util.JacksonUtil;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobUserDao;
 import com.xxl.job.core.biz.model.ReturnT;
 import org.springframework.context.annotation.Configuration;

@@ -3,7 +3,7 @@ package com.xxl.job.admin.controller;
 import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobGroupEntity;
 import com.xxl.job.admin.controller.annotation.PermissionLimit;
 import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobUserEntity;
-import com.xxl.job.admin.core.util.I18nUtil;
+import com.xxl.admin.core.util.I18nUtil;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobGroupDao;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobUserDao;
 import com.xxl.job.admin.service.LoginService;

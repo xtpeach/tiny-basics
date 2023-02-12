@@ -19,7 +19,7 @@ public class ApiTinyRestfulController {
     @GetMapping(value = "id/next")
     public Response<Long> next() {
         // 调用 tiny-id 获取 id
-        Long nextId = TinyId.nextId("test");
+        Long nextId = TinyId.nextId("tiny-id");
         return Response.success(nextId);
     }
 

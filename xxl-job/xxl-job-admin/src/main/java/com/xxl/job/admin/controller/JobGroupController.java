@@ -2,7 +2,7 @@ package com.xxl.job.admin.controller;
 
 import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobGroupEntity;
 import com.xtpeach.tiny.basics.common.module.entity.xxl.job.XxlJobRegistryEntity;
-import com.xxl.job.admin.core.util.I18nUtil;
+import com.xxl.admin.core.util.I18nUtil;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobGroupDao;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobInfoDao;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobRegistryDao;

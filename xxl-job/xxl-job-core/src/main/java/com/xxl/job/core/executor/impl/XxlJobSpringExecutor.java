@@ -4,7 +4,7 @@ import com.xxl.job.core.biz.AdminBiz;
 import com.xxl.job.core.executor.XxlJobExecutor;
 import com.xxl.job.core.glue.GlueFactory;
 import com.xxl.job.core.handler.annotation.XxlJob;
-import com.xxl.job.core.registry.EurekaUpdateWeightManager;
+import com.xxl.job.core.registry.UpdateWeightManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -22,6 +22,7 @@ import java.util.Map;
 
 /**
  * xxl-job executor (for spring)
+ * EurekaXxlJobConfig > @Bean
  *
  * @author xuxueli 2018-11-01 09:24:52
  */
@@ -31,6 +32,9 @@ public class XxlJobSpringExecutor extends XxlJobExecutor implements ApplicationC
 
     @Resource
     private AdminBiz adminBiz;
+
+    @Resource
+    private UpdateWeightManager updateWeightManager;
 
     // start
     @Override
@@ -87,7 +91,7 @@ public class XxlJobSpringExecutor extends XxlJobExecutor implements ApplicationC
                 XxlJob xxlJob = methodXxlJobEntry.getValue();
                 // regist
                 registJobHandler(xxlJob, bean, executeMethod);
-                EurekaUpdateWeightManager.xxlJobHandlerList.add(xxlJob.value());
+                updateWeightManager.addXxlJobHandlerList(xxlJob.value());
             }
         }
     }

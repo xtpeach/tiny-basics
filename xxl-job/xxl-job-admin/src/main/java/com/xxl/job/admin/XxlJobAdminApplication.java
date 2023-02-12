@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @author xuxueli 2018-10-28 00:38:13
+ * @author xtpeach
  */
 @SpringBootApplication(scanBasePackages = {
         // 数据库加密
@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         "com.xtpeach.tiny.basics.core.xxl.job.repo.executor",
 
         // xxl job
+        "com.xxl.admin",
         "com.xxl.job"
 })
 @MapperScan("com.xtpeach.tiny.basics.core.xxl.job.dao")

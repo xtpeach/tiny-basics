@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * XxlJob开发示例（Bean模式）
  *
- * @author xuxueli 2019-12-11 21:52:51
+ * @author xtpeach
  */
 @Component
 public class SampleXxlJob {
