@@ -26,6 +26,7 @@ spring:
     nacos:
       server-addr: ${NACOS_SERVER_ADDR:http://127.0.0.1:8848}
       discovery:
+        cluster-name: ${NACOS_DISCOVERY_CLUSTER_NAME:DEFAULT}
         username: ${NACOS_DISCOVERY_USERNAME:nacos}
         password: ${NACOS_DISCOVERY_PASSWORD:nacos}
         namespace: ${NACOS_DISCOVERY_NAMESPACE:public}
