@@ -20,8 +20,9 @@ eureka:
 
 # resources
 spring:
-  # nacos 注册中心
+
   cloud:
+    # nacos 注册中心
     nacos:
       server-addr: ${NACOS_SERVER_ADDR:http://127.0.0.1:8848}
       discovery:
@@ -32,6 +33,10 @@ spring:
         group: ${NACOS_DISCOVERY_NAMESPACE:DEFAULT_GROUP}
         ephemeral: ${NACOS_DISCOVERY_EPHEMERAL:true}
         weight: ${NACOS_DISCOVERY_WEIGHT:1}
+    # sentinel
+    sentinel:
+      transport:
+        dashboard: ${SENTINEL_TRANSPORT_DASHBOARD:127.0.0.1:3761}
 
   #application
   application:
