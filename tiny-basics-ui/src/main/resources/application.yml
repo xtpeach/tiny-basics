@@ -59,7 +59,7 @@ spring:
   datasource:
     defaultDb: enable
     driver: org.postgresql.Driver
-    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/xxl_job}
+    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/tiny-ui}
     repositoryName: ${DATASOURCE_REPOSITORY_NAME:postgres}
     repositoryWord: ${DATASOURCE_REPOSITORY_WORD:12345678}
     # datasource-pool
