@@ -13,10 +13,10 @@
 
     <!-- groupId \ artifactId \ version \ packaging \ name \ description-->
     <groupId>com.xtpeach</groupId>
-    <artifactId>tiny-basics-controller</artifactId>
-    <version>${tiny-basics-controller.version}</version>
+    <artifactId>tiny-basics-controller-dubbo</artifactId>
+    <version>${tiny-basics-controller-dubbo.version}</version>
     <packaging>jar</packaging>
-    <name>tiny-basics-controller</name>
+    <name>tiny-basics-controller-dubbo</name>
     <description>Data Foundation MicroServices Tiny Basics Controller</description>
 
     <!-- dependencies -->

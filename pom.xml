@@ -10,7 +10,8 @@
 
         <!-- tiny basics -->
         <module>tiny-basics-common</module>
-        <module>tiny-basics-controller</module>
+        <module>tiny-basics-controller-http</module>
+        <module>tiny-basics-controller-dubbo</module>
         <module>tiny-basics-core</module>
 
         <!-- server -->
@@ -45,10 +46,12 @@
 
         <!-- module version -->
         <tiny-basics-common.version>${tiny-basics.version}</tiny-basics-common.version>
-        <tiny-basics-controller.version>${tiny-basics.version}</tiny-basics-controller.version>
         <tiny-basics-core.version>${tiny-basics.version}</tiny-basics-core.version>
+        <tiny-basics-controller-http.version>${tiny-basics.version}</tiny-basics-controller-http.version>
+        <tiny-basics-controller-dubbo.version>${tiny-basics.version}</tiny-basics-controller-dubbo.version>
         <tiny-basics-ui.version>${tiny-basics.version}</tiny-basics-ui.version>
         <tiny-basics-api-server-http.version>${tiny-basics.version}</tiny-basics-api-server-http.version>
+        <tiny-basics-api-server-dubbo.version>${tiny-basics.version}</tiny-basics-api-server-dubbo.version>
 
         <!-- xxl-job version -->
         <xxl-job.version>2.3.1</xxl-job.version>
@@ -102,8 +105,14 @@
 
             <dependency>
                 <groupId>com.xtpeach</groupId>
-                <artifactId>tiny-basics-controller</artifactId>
-                <version>${tiny-basics-controller.version}</version>
+                <artifactId>tiny-basics-controller-http</artifactId>
+                <version>${tiny-basics-controller-http.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xtpeach</groupId>
+                <artifactId>tiny-basics-controller-dubbo</artifactId>
+                <version>${tiny-basics-controller-dubbo.version}</version>
             </dependency>
 
             <!-- xxl job -->

@@ -13,18 +13,18 @@
 
     <!-- groupId \ artifactId \ version \ packaging \ name \ description-->
     <groupId>com.xtpeach</groupId>
-    <artifactId>tiny-basics-ui</artifactId>
-    <version>${tiny-basics-ui.version}</version>
+    <artifactId>tiny-basics-controller-http</artifactId>
+    <version>${tiny-basics-controller-http.version}</version>
     <packaging>jar</packaging>
-    <name>tiny-basics-ui</name>
-    <description>Data Foundation MicroServices Tiny Basics UI</description>
+    <name>tiny-basics-controller-http</name>
+    <description>Data Foundation MicroServices Tiny Basics Controller</description>
 
     <!-- dependencies -->
     <dependencies>
-        <!-- com-xtpeach [tiny-basics-common] -->
+        <!-- com-xtpeach [tiny-basics-core] -->
         <dependency>
             <groupId>com.xtpeach</groupId>
-            <artifactId>tiny-basics-controller-http</artifactId>
+            <artifactId>tiny-basics-core</artifactId>
         </dependency>
     </dependencies>
 
@@ -33,19 +33,6 @@
         <finalName>${project.name}-${project.version}</finalName>
 
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                            <goal>build-info</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>

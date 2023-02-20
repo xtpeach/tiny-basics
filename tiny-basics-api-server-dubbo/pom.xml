@@ -24,7 +24,7 @@
         <!-- com-xtpeach [tiny-basics-common] -->
         <dependency>
             <groupId>com.xtpeach</groupId>
-            <artifactId>tiny-basics-controller</artifactId>
+            <artifactId>tiny-basics-controller-dubbo</artifactId>
         </dependency>
 
         <!-- com-xtpeach [tiny-file-common] -->
