@@ -12,8 +12,11 @@
         <module>tiny-basics-common</module>
         <module>tiny-basics-controller</module>
         <module>tiny-basics-core</module>
+
+        <!-- server -->
         <module>tiny-basics-ui</module>
-        <module>tiny-basics-api-server</module>
+        <module>tiny-basics-api-server-http</module>
+        <module>tiny-basics-api-server-dubbo</module>
 
         <!-- xxl-job -->
         <module>xxl-job</module>
@@ -45,7 +48,7 @@
         <tiny-basics-controller.version>${tiny-basics.version}</tiny-basics-controller.version>
         <tiny-basics-core.version>${tiny-basics.version}</tiny-basics-core.version>
         <tiny-basics-ui.version>${tiny-basics.version}</tiny-basics-ui.version>
-        <tiny-basics-api-server.version>${tiny-basics.version}</tiny-basics-api-server.version>
+        <tiny-basics-api-server-http.version>${tiny-basics.version}</tiny-basics-api-server-http.version>
 
         <!-- xxl-job version -->
         <xxl-job.version>2.3.1</xxl-job.version>

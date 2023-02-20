@@ -41,7 +41,7 @@ spring:
 
   #application
   application:
-    name: ${APPLICATION_NAME:tiny-basics-api-server}
+    name: ${APPLICATION_NAME:tiny-basics-api-server-dubbo}
 
   #main
   main:

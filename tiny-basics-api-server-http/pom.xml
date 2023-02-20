@@ -13,10 +13,10 @@
 
     <!-- groupId \ artifactId \ version \ packaging \ name \ description-->
     <groupId>com.xtpeach</groupId>
-    <artifactId>tiny-basics-api-server</artifactId>
-    <version>${tiny-basics-api-server.version}</version>
+    <artifactId>tiny-basics-api-server-http</artifactId>
+    <version>${tiny-basics-api-server-http.version}</version>
     <packaging>jar</packaging>
-    <name>tiny-basics-api-server</name>
+    <name>tiny-basics-api-server-http</name>
     <description>Data Foundation MicroServices Tiny Basics UI</description>
 
     <!-- dependencies -->

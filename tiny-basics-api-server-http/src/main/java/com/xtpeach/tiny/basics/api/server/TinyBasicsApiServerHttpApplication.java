@@ -59,7 +59,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableScheduling
 @ServletComponentScan
 @EnableTransactionManagement
-public class TinyBasicsApiServerApplication {
+public class TinyBasicsApiServerHttpApplication {
 
     /**
      * [start server]
@@ -68,7 +68,7 @@ public class TinyBasicsApiServerApplication {
      * @param args
      */
     public static void main(String[] args) {
-        SpringApplication.run(TinyBasicsApiServerApplication.class, args);
+        SpringApplication.run(TinyBasicsApiServerHttpApplication.class, args);
     }
 
 }
