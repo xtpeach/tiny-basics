@@ -15,7 +15,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/tiny-base-init-his")
-public class TinyBaseInitHisController {
+public class TinyBasicsInitHisController {
 
     @Resource
     private TinyBaseInitHisEntityService tinyBaseInitHisEntityService;

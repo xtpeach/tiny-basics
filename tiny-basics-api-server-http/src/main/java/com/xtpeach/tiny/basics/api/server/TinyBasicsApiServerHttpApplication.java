@@ -1,5 +1,6 @@
 package com.xtpeach.tiny.basics.api.server;
 
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -59,6 +60,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableScheduling
 @ServletComponentScan
 @EnableTransactionManagement
+
+// dubbo
+@EnableDubbo
 public class TinyBasicsApiServerHttpApplication {
 
     /**

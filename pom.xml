@@ -57,6 +57,7 @@
         <xxl-job.version>2.3.1</xxl-job.version>
 
         <!-- dependency version properties -->
+        <spring-cloud-starter-dubbo.version>2021.0.1.0</spring-cloud-starter-dubbo.version>
         <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
         <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
         <spring-context.version>5.1.5.RELEASE</spring-context.version>
@@ -139,6 +140,12 @@
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-dubbo</artifactId>
+                <version>${spring-cloud-starter-dubbo.version}</version>
             </dependency>
 
             <dependency>
@@ -396,6 +403,15 @@
                 <dependency>
                     <groupId>com.alibaba.cloud</groupId>
                     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>nacos-config</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
                 </dependency>
             </dependencies>
         </profile>

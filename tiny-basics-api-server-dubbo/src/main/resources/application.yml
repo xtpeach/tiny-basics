@@ -1,6 +1,6 @@
 # 30000-32767
 server:
-  port: 31001
+  port: 31002
   tomcat:
     accept-count: 2000
 
@@ -17,6 +17,23 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
     hostname: ${spring.cloud.client.ip-address}
     lease-renewal-interval-in-seconds: 5
+
+# dubbo 服务提供端
+dubbo:
+  registry:
+    address: ${DUBBO_REGISTRY_ADDRESS:nacos://127.0.0.1:8848}
+    username: ${NACOS_DISCOVERY_USERNAME:nacos}
+    password: ${NACOS_DISCOVERY_PASSWORD:nacos}
+  application:
+    name: ${spring.application.name}
+  protocol:
+    name: dubbo
+    port: ${DUBBO_PROTOCOL_PORT:9090}
+  scan:
+    base-packages:
+      - com.xtpeach.tiny.basics.controller.api.server
+  provider:
+    timeout: ${DUBBO_PROVIDER_TIMEOUT:30000}
 
 # spring
 spring:
@@ -60,7 +77,7 @@ spring:
   datasource:
     defaultDb: enable
     driver: org.postgresql.Driver
-    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/xxl_job}
+    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/xxl-job}
     repositoryName: ${DATASOURCE_REPOSITORY_NAME:postgres}
     repositoryWord: ${DATASOURCE_REPOSITORY_WORD:12345678}
     # datasource-pool
