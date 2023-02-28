@@ -19,23 +19,40 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         "com.xtpeach.tiny.basics.common.config.db",
         // 初始化数据
         "com.xtpeach.tiny.basics.core.init.repo.executor",
+        "com.xtpeach.tiny.basics.core.init.service",
         "com.xtpeach.tiny.basics.core.ui.repo.executor",
 
         // ui
         "com.xtpeach.tiny.basics.ui"
 })
+
+/**
+ * mapper
+ */
 @MapperScan("com.xtpeach.tiny.basics.core.ui.dao")
+
 /**
  * jpa entity 到 module->entity->具体项目
  */
 @EntityScan(basePackages = {
+        // init
         "com.xtpeach.tiny.basics.common.module.entity.init",
+
+        // ui
         "com.xtpeach.tiny.basics.common.module.entity.ui"
 })
+
+/**
+ * jpa repo
+ */
 @EnableJpaRepositories(basePackages = {
+        // init
         "com.xtpeach.tiny.basics.core.init.repo",
+
+        // ui
         "com.xtpeach.tiny.basics.core.ui.repo"
 })
+
 @EnableScheduling
 @ServletComponentScan
 @EnableTransactionManagement

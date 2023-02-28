@@ -36,6 +36,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // tiny-id
         "com.xtpeach.tiny.id.config"
 })
+
 /**
  * mapper
  */
@@ -46,6 +47,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // api server dao
         "com.xtpeach.tiny.basics.core.api.server.dao"
 })
+
 /**
  * jpa entity 到 module->entity->具体项目
  */
@@ -56,6 +58,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // api server
         "com.xtpeach.tiny.basics.common.module.entity.api.server"
 })
+
 /**
  * jpa repo
  */
@@ -66,6 +69,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // api server
         "com.xtpeach.tiny.basics.core.api.server.repo"
 })
+
 /**
  * feign client
  */
@@ -79,6 +83,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // tiny-id
         "com.xtpeach.tiny.id.feign"
 })
+
 /**
  * dubbo
  */
