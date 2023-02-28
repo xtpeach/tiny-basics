@@ -26,10 +26,6 @@
             <groupId>com.xtpeach</groupId>
             <artifactId>tiny-basics-controller-http</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.xtpeach</groupId>
-            <artifactId>tiny-basics-controller-dubbo</artifactId>
-        </dependency>
 
         <!-- com-xtpeach [tiny-file-common] -->
         <dependency>

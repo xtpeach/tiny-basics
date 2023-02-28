@@ -18,16 +18,23 @@ eureka:
     hostname: ${spring.cloud.client.ip-address}
     lease-renewal-interval-in-seconds: 5
 
+# feign
+feign:
+  client:
+    config:
+      default:
+        # connect timeout
+        connect-timeout: ${FEIGN_CONNECT_TIMEOUT:2000}
+        # read timeout
+        read-timeout: ${FEIGN_READ_TIMEOUT:5000}
+
 # dubbo 消费端
 dubbo:
-  application:
-    name: ${DUBBO_APPLICATION_NAME:tiny-basics-api-server-dubbo}
+  protocol:
+    name: dubbo
+    port: ${DUBBO_PROTOCOL_PORT:-1}
   consumer:
     check: false
-    retries: 0
-  scan:
-    base-packages:
-      - com.xtpeach.tiny.basics.controller.api.server
 
 # spring
 spring:
@@ -71,7 +78,7 @@ spring:
   datasource:
     defaultDb: enable
     driver: org.postgresql.Driver
-    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/xxl-job}
+    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/api-server-http}
     repositoryName: ${DATASOURCE_REPOSITORY_NAME:postgres}
     repositoryWord: ${DATASOURCE_REPOSITORY_WORD:12345678}
     # datasource-pool
@@ -137,7 +144,7 @@ api-server:
 xxl:
   job:
     executor:
-      title: 基础接口服务
+      title: 基础http接口服务
       logpath: /home/logs/job-api-server-log
       logretentiondays: 7
 

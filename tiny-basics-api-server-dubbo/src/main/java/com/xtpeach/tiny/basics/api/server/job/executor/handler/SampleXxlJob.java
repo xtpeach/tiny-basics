@@ -17,10 +17,10 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class SampleXxlJob {
 
+    private static Logger logger = LoggerFactory.getLogger(SampleXxlJob.class);
+
     @Value("${spring.application.name:未配置应用名称}")
     private String appName;
-
-    private static Logger logger = LoggerFactory.getLogger(SampleXxlJob.class);
 
     /**
      * 示例 处理器

@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         "com.xtpeach.tiny.basics.common.config.db",
         // 初始化数据
         "com.xtpeach.tiny.basics.core.init.repo.executor",
+        "com.xtpeach.tiny.basics.core.init.service",
         "com.xtpeach.tiny.basics.core.api.server.repo.executor",
 
         // api server
@@ -35,18 +36,39 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // tiny-id
         "com.xtpeach.tiny.id.config"
 })
-@MapperScan("com.xtpeach.tiny.basics.core.api.server.dao")
+/**
+ * mapper
+ */
+@MapperScan(basePackages = {
+        // init dao
+        "com.xtpeach.tiny.basics.core.init.dao",
+
+        // api server dao
+        "com.xtpeach.tiny.basics.core.api.server.dao"
+})
 /**
  * jpa entity 到 module->entity->具体项目
  */
 @EntityScan(basePackages = {
+        // init
         "com.xtpeach.tiny.basics.common.module.entity.init",
+
+        // api server
         "com.xtpeach.tiny.basics.common.module.entity.api.server"
 })
+/**
+ * jpa repo
+ */
 @EnableJpaRepositories(basePackages = {
+        // init
         "com.xtpeach.tiny.basics.core.init.repo",
+
+        // api server
         "com.xtpeach.tiny.basics.core.api.server.repo"
 })
+/**
+ * feign client
+ */
 @EnableFeignClients(basePackages = {
         // xxl-job
         "com.xxl.job.core.biz.client",
@@ -57,12 +79,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // tiny-id
         "com.xtpeach.tiny.id.feign"
 })
+/**
+ * dubbo
+ */
+@EnableDubbo(scanBasePackages = {
+        "com.xtpeach.tiny.basics"
+})
+
 @EnableScheduling
 @ServletComponentScan
 @EnableTransactionManagement
-
-// dubbo
-@EnableDubbo
 public class TinyBasicsApiServerDubboApplication {
 
     /**

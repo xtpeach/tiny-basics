@@ -1,6 +1,5 @@
 package com.xtpeach.tiny.basics.api.server;
 
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,10 +20,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         "com.xtpeach.tiny.basics.common.config.db",
         // 初始化数据
         "com.xtpeach.tiny.basics.core.init.repo.executor",
+        "com.xtpeach.tiny.basics.core.init.service",
         "com.xtpeach.tiny.basics.core.api.server.repo.executor",
 
         // api server
         "com.xtpeach.tiny.basics.api.server",
+
+        // api server controller
+        "com.xtpeach.tiny.basics.controller",
 
         // xxl job
         "com.xxl.job",
@@ -35,19 +38,43 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // tiny-id
         "com.xtpeach.tiny.id.config"
 })
-@MapperScan("com.xtpeach.tiny.basics.core.api.server.dao")
+/**
+ * mapper
+ */
+@MapperScan(basePackages = {
+        // init dao
+        "com.xtpeach.tiny.basics.core.init.dao",
+
+        // api server dao
+        "com.xtpeach.tiny.basics.core.api.server.dao"
+})
 /**
  * jpa entity 到 module->entity->具体项目
  */
 @EntityScan(basePackages = {
+        // init
         "com.xtpeach.tiny.basics.common.module.entity.init",
+
+        // api server
         "com.xtpeach.tiny.basics.common.module.entity.api.server"
 })
+/**
+ * jpa repo
+ */
 @EnableJpaRepositories(basePackages = {
+        // init
         "com.xtpeach.tiny.basics.core.init.repo",
+
+        // api server
         "com.xtpeach.tiny.basics.core.api.server.repo"
 })
+/**
+ * feign client
+ */
 @EnableFeignClients(basePackages = {
+        // tiny basics
+        "com.xtpeach.tiny.basics.common.feign",
+
         // xxl-job
         "com.xxl.job.core.biz.client",
 
@@ -57,12 +84,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // tiny-id
         "com.xtpeach.tiny.id.feign"
 })
+
 @EnableScheduling
 @ServletComponentScan
 @EnableTransactionManagement
-
-// dubbo
-@EnableDubbo
 public class TinyBasicsApiServerHttpApplication {
 
     /**

@@ -1,9 +1,9 @@
 package com.xtpeach.tiny.basics.core.init.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xtpeach.tiny.basics.common.module.entity.init.TinyBaseInitHisEntity;
-import com.xtpeach.tiny.basics.core.init.dao.TinyBaseInitHisEntityDao;
-import com.xtpeach.tiny.basics.core.init.service.TinyBaseInitHisEntityService;
+import com.xtpeach.tiny.basics.common.module.entity.init.TinyBasicsInitHisEntity;
+import com.xtpeach.tiny.basics.core.init.dao.TinyBasicsInitHisEntityDao;
+import com.xtpeach.tiny.basics.core.init.service.TinyBasicsInitHisEntityService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TinyBaseInitHisEntityServiceImpl
-        extends ServiceImpl<TinyBaseInitHisEntityDao, TinyBaseInitHisEntity>
-        implements TinyBaseInitHisEntityService {
+        extends ServiceImpl<TinyBasicsInitHisEntityDao, TinyBasicsInitHisEntity>
+        implements TinyBasicsInitHisEntityService {
 }

@@ -18,20 +18,21 @@ eureka:
     hostname: ${spring.cloud.client.ip-address}
     lease-renewal-interval-in-seconds: 5
 
+# feign
+feign:
+  client:
+    config:
+      default:
+        # connect timeout
+        connect-timeout: ${FEIGN_CONNECT_TIMEOUT:2000}
+        # read timeout
+        read-timeout: ${FEIGN_READ_TIMEOUT:5000}
+
 # dubbo 服务提供端
 dubbo:
-  registry:
-    address: ${DUBBO_REGISTRY_ADDRESS:nacos://127.0.0.1:8848}
-    username: ${NACOS_DISCOVERY_USERNAME:nacos}
-    password: ${NACOS_DISCOVERY_PASSWORD:nacos}
-  application:
-    name: ${spring.application.name}
   protocol:
     name: dubbo
-    port: ${DUBBO_PROTOCOL_PORT:9090}
-  scan:
-    base-packages:
-      - com.xtpeach.tiny.basics.controller.api.server
+    port: ${DUBBO_PROTOCOL_PORT:-1}
   provider:
     timeout: ${DUBBO_PROVIDER_TIMEOUT:30000}
 
@@ -77,7 +78,7 @@ spring:
   datasource:
     defaultDb: enable
     driver: org.postgresql.Driver
-    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/xxl-job}
+    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/api-server-dubbo}
     repositoryName: ${DATASOURCE_REPOSITORY_NAME:postgres}
     repositoryWord: ${DATASOURCE_REPOSITORY_WORD:12345678}
     # datasource-pool
@@ -143,7 +144,7 @@ api-server:
 xxl:
   job:
     executor:
-      title: 基础接口服务
+      title: 基础dubbo接口服务
       logpath: /home/logs/job-api-server-log
       logretentiondays: 7
 

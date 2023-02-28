@@ -1,8 +1,9 @@
 package com.xtpeach.tiny.basics.controller.init;
 
-import com.xtpeach.tiny.basics.common.module.entity.init.TinyBaseInitHisEntity;
+import com.xtpeach.tiny.basics.common.module.entity.init.TinyBasicsInitHisEntity;
 import com.xtpeach.tiny.basics.common.response.Response;
-import com.xtpeach.tiny.basics.core.init.service.TinyBaseInitHisEntityService;
+import com.xtpeach.tiny.basics.core.init.service.TinyBasicsInitHisEntityService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +19,11 @@ import java.util.List;
 public class TinyBasicsInitHisController {
 
     @Resource
-    private TinyBaseInitHisEntityService tinyBaseInitHisEntityService;
+    private TinyBasicsInitHisEntityService tinyBasicsInitHisEntityService;
 
     @GetMapping("/queryList")
-    public Response<List<TinyBaseInitHisEntity>> queryList() {
-        return Response.success(tinyBaseInitHisEntityService.list());
+    public Response<List<TinyBasicsInitHisEntity>> queryList() {
+        return Response.success(tinyBasicsInitHisEntityService.list());
     }
 
 }

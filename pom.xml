@@ -416,6 +416,15 @@
             </dependencies>
         </profile>
         <profile>
+            <id>dubbo</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-starter-dubbo</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
             <id>sentinel</id>
             <dependencies>
                 <dependency>

@@ -46,7 +46,7 @@ import javax.persistence.Table;
  * 初始化数据操作历史记录
  * @author xtpeach
  */
-public class TinyBaseInitHisEntity extends BaseEntity {
+public class TinyBasicsInitHisEntity extends BaseEntity {
 
     @Column(name = "init_outcome", length = 20, nullable = false)
     @Excel(name = "init_outcome", orderNum = "3")
