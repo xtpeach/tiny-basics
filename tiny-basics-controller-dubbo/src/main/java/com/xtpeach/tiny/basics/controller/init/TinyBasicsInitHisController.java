@@ -3,7 +3,6 @@ package com.xtpeach.tiny.basics.controller.init;
 import com.xtpeach.tiny.basics.common.module.entity.init.TinyBasicsInitHisEntity;
 import com.xtpeach.tiny.basics.common.response.Response;
 import com.xtpeach.tiny.basics.core.init.service.TinyBasicsInitHisEntityService;
-import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
