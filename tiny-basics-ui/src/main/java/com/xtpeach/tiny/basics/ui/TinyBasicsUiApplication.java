@@ -29,7 +29,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * mapper
  */
-@MapperScan("com.xtpeach.tiny.basics.core.ui.dao")
+@MapperScan(basePackages = {
+        // init dao
+        "com.xtpeach.tiny.basics.core.init.dao",
+
+        // ui dao
+        "com.xtpeach.tiny.basics.core.ui.dao"
+})
 
 /**
  * jpa entity 到 module->entity->具体项目
