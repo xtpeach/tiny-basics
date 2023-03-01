@@ -18,6 +18,24 @@ eureka:
     hostname: ${spring.cloud.client.ip-address}
     lease-renewal-interval-in-seconds: 5
 
+# feign
+feign:
+  client:
+    config:
+      default:
+        # connect timeout
+        connect-timeout: ${FEIGN_CONNECT_TIMEOUT:2000}
+        # read timeout
+        read-timeout: ${FEIGN_READ_TIMEOUT:5000}
+
+# dubbo 服务提供端
+dubbo:
+  protocol:
+    name: dubbo
+    port: ${DUBBO_PROTOCOL_PORT:-1}
+  provider:
+    timeout: ${DUBBO_PROVIDER_TIMEOUT:30000}
+
 # resources
 spring:
 
