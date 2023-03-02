@@ -76,7 +76,7 @@ spec:
               -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+ExplicitGCInvokesConcurrent -XX:+HeapDumpOnOutOfMemoryError
               -XX:-OmitStackTraceInFastThrow -Duser.timezone=Asia/Shanghai -Dclient.encoding.override=UTF-8
               -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom
-              -XX:HeapDumpPath=/var/log/HeapDumpOnOutOfMemoryError/
+              -XX:HeapDumpPath=/home/logs/oom/{project.name}
               -XX:+UseParNewGC -Xloggc:/var/log/gc.log -XX:+PrintGCDetails
               -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:+UseCMSInitiatingOccupancyOnly
               -XX:CMSInitiatingOccupancyFraction=60 -XX:+CMSClassUnloadingEnabled -XX:+CMSParallelRemarkEnabled

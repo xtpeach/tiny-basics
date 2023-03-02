@@ -40,7 +40,7 @@ services:
       #(-XX:+CMSClassUnloadingEnabled)
       #
       #-XX:+HeapDumpOnOutOfMemoryError
-      #-XX:HeapDumpPath=/var/log/HeapDumpOnOutOfMemoryError/
+      #-XX:HeapDumpPath=/home/logs/oom/{project.name}
       #-XX:+PrintGCDetails
       #-XX:+PrintGCDateStamps
       #-XX:+PrintGCTimeStamps
@@ -53,7 +53,7 @@ services:
       #-XX:NumberOfGCLogFiles=5
       #-XX:GCLogFileSize=5M
       #-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5050
-      JAVA_OPTS: -Xms1024m -Xmx1024m -Xmn400m -Xss1M -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -Duser.timezone=Asia/Shanghai -Dclient.encoding.override=UTF-8 -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=5 -XX:PretenureSizeThreshold=1M -XX:+ExplicitGCInvokesConcurrent -XX:+ScavengeBeforeFullGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=9 -XX:+CMSScavengeBeforeRemark -XX:+CMSParallelInitialMarkEnabled -XX:+CMSParallelRemarkEnabled -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/HeapDumpOnOutOfMemoryError/ -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+UseGCLogFileRotation -Xloggc:/var/log/gc.log -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=5M
+      JAVA_OPTS: -Xms1024m -Xmx1024m -Xmn400m -Xss1M -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -Duser.timezone=Asia/Shanghai -Dclient.encoding.override=UTF-8 -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=5 -XX:PretenureSizeThreshold=1M -XX:+ExplicitGCInvokesConcurrent -XX:+ScavengeBeforeFullGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=9 -XX:+CMSScavengeBeforeRemark -XX:+CMSParallelInitialMarkEnabled -XX:+CMSParallelRemarkEnabled -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/logs/oom/{project.name} -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+UseGCLogFileRotation -Xloggc:/var/log/gc.log -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=5M
       JAR_OPTS: --logging.path=/home/logs/
     network_mode: "host"
     volumes:

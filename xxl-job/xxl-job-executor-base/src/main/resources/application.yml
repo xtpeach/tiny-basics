@@ -30,6 +30,8 @@ feign:
 
 # dubbo 服务提供端
 dubbo:
+  cloud:
+    subscribed-services: null
   protocol:
     name: dubbo
     port: ${DUBBO_PROTOCOL_PORT:-1}

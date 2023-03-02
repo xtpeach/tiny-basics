@@ -31,7 +31,7 @@
 #(-XX:+CMSClassUnloadingEnabled)
 #
 #-XX:+HeapDumpOnOutOfMemoryError
-#-XX:HeapDumpPath=/var/log/HeapDumpOnOutOfMemoryError/
+#-XX:HeapDumpPath=/home/logs/oom/{project.name}
 #-XX:+PrintGCDetails
 #-XX:+PrintGCDateStamps
 #-XX:+PrintGCTimeStamps
@@ -44,7 +44,7 @@
 #-XX:NumberOfGCLogFiles=5
 #-XX:GCLogFileSize=5M
 
-JAVA_OPT="-Xms1024m -Xmx1024m -Xmn400m -Xss1M -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -Duser.timezone=Asia/Shanghai -Dclient.encoding.override=UTF-8 -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -XX:+UnlockExperimentalVMOptions -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=5 -XX:PretenureSizeThreshold=1M -XX:+ExplicitGCInvokesConcurrent -XX:+ScavengeBeforeFullGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=9 -XX:+CMSScavengeBeforeRemark -XX:+CMSParallellnitialMarkEnabled -XX:+CMSParallelRemarkEnabled -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/HeapDumpOnOutOfMemoryError/ -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -Xloggc:/var/log/gc.log -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=5M"
+JAVA_OPT="-Xms1024m -Xmx1024m -Xmn400m -Xss1M -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -Duser.timezone=Asia/Shanghai -Dclient.encoding.override=UTF-8 -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -XX:+UnlockExperimentalVMOptions -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=5 -XX:PretenureSizeThreshold=1M -XX:+ExplicitGCInvokesConcurrent -XX:+ScavengeBeforeFullGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=9 -XX:+CMSScavengeBeforeRemark -XX:+CMSParallellnitialMarkEnabled -XX:+CMSParallelRemarkEnabled -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/logs/oom/{project.name} -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -Xloggc:/var/log/gc.log -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=5M"
 APP_NAME={project.name}-{project.version}.jar
 
 start_app(){
