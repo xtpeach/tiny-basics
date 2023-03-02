@@ -10,8 +10,6 @@
 
         <!-- tiny basics -->
         <module>tiny-basics-common</module>
-        <module>tiny-basics-controller-http</module>
-        <module>tiny-basics-controller-dubbo</module>
         <module>tiny-basics-core</module>
 
         <!-- server -->

@@ -1,4 +1,4 @@
-package com.xtpeach.tiny.basics.controller.api.server.impl;
+package com.xtpeach.tiny.basics.api.server.dubbo;
 
 import com.xtpeach.tiny.basics.common.module.entity.init.TinyBasicsInitHisEntity;
 import com.xtpeach.tiny.basics.core.api.server.dubbo.TinyBasicsInitHisService;

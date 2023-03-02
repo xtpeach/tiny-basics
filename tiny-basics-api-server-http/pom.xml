@@ -21,10 +21,10 @@
 
     <!-- dependencies -->
     <dependencies>
-        <!-- com-xtpeach [tiny-basics-controller] -->
+        <!-- com-xtpeach [tiny-basics-core] -->
         <dependency>
             <groupId>com.xtpeach</groupId>
-            <artifactId>tiny-basics-controller-http</artifactId>
+            <artifactId>tiny-basics-core</artifactId>
         </dependency>
 
         <!-- com-xtpeach [tiny-file-common] -->

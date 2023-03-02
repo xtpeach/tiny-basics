@@ -26,8 +26,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // api server
         "com.xtpeach.tiny.basics.api.server",
 
-        // api server controller
-        "com.xtpeach.tiny.basics.controller",
+        // api server core controller
+        "com.xtpeach.tiny.basics.core.controller",
 
         // xxl job
         "com.xxl.job",

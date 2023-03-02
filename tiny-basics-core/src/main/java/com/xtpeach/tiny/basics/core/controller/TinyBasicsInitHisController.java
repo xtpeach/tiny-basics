@@ -1,4 +1,4 @@
-package com.xtpeach.tiny.basics.controller.init;
+package com.xtpeach.tiny.basics.core.controller;
 
 import com.xtpeach.tiny.basics.common.module.entity.init.TinyBasicsInitHisEntity;
 import com.xtpeach.tiny.basics.common.response.Response;

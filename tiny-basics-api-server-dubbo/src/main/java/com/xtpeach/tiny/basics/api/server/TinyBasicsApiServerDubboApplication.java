@@ -88,7 +88,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * dubbo
  */
 @EnableDubbo(scanBasePackages = {
-        "com.xtpeach.tiny.basics.controller.api.server"
+        "com.xtpeach.tiny.basics.api.server.dubbo"
 })
 
 @EnableScheduling
