@@ -1,7 +1,9 @@
 package com.xxl.job.core.registry;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
+import com.alibaba.cloud.nacos.discovery.NacosDiscoveryClient;
 import com.alibaba.cloud.nacos.discovery.NacosDiscoveryClientConfiguration;
+import com.alibaba.cloud.nacos.registry.NacosServiceRegistry;
 import com.alibaba.fastjson.JSONArray;
 import com.xxl.job.core.util.OSUtils;
 import org.apache.commons.collections4.list.CursorableLinkedList;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -30,6 +33,12 @@ public class NacosUpdateWeightManager implements UpdateWeightManager {
 
     @Resource
     private NacosDiscoveryProperties nacosDiscoveryProperties;
+
+    @Resource
+    private NacosServiceRegistry nacosServiceRegistry;
+
+    @Resource
+    private Registration registration;
 
     private final static List<String> xxlJobHandlerList = new CursorableLinkedList<>();
 
@@ -73,6 +82,7 @@ public class NacosUpdateWeightManager implements UpdateWeightManager {
         metaData.put(EXECUTOR_TITLE, groupTitle);
         metaData.put(EXECUTOR_HANDLER, JSONArray.toJSONString(xxlJobHandlerList));
         nacosDiscoveryProperties.setMetadata(metaData);
+        nacosServiceRegistry.register(registration);
     }
 
     @Override
