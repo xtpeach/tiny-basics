@@ -45,7 +45,7 @@ public class JobFailMonitorHelper {
 
 						if (failLogIds!=null && !failLogIds.isEmpty()) {
 
-                            // eureka *** 分散任务 通过 eureka 获取 xxl-job-admin 实例的数量，让一个实例加载一部分 jobInfo
+                            // discovery *** 分散任务 通过 discovery 获取 xxl-job-admin 实例的数量，让一个实例加载一部分 jobInfo
                             int instanceCount = XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInstanceCount();
                             int startByLocalSortNum = XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInstanceSortNum();
                             List<String> failLogIdsDispatched = Lists.newArrayList();

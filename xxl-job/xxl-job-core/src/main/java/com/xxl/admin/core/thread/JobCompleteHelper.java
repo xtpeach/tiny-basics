@@ -79,7 +79,7 @@ public class JobCompleteHelper {
 						Date losedTime = DateUtil.addMinutes(new Date(), -10);
 						List<String> losedJobIds  = XxlJobAdminConfig.getAdminConfig().getXxlJobLogDao().findLostJobIds(losedTime);
 
-                        // eureka *** 分散任务 通过 eureka 获取 xxl-job-admin 实例的数量，让一个实例加载一部分 jobInfo
+                        // discovery *** 分散任务 通过 discovery 获取 xxl-job-admin 实例的数量，让一个实例加载一部分 jobInfo
                         int instanceCount = XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInstanceCount();
                         int startByLocalSortNum = XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInstanceSortNum();
                         List<String> losedJobIdsDispatched = Lists.newArrayList();

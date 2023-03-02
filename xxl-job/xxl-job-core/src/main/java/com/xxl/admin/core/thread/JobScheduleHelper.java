@@ -10,9 +10,6 @@ import org.apache.commons.compress.utils.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -21,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author xuxueli 2019-05-21
  */
 public class JobScheduleHelper {
+
     private static Logger logger = LoggerFactory.getLogger(JobScheduleHelper.class);
 
     private static JobScheduleHelper instance = new JobScheduleHelper();
@@ -54,48 +52,36 @@ public class JobScheduleHelper {
                 logger.info(">>>>>>>>> init xxl-job admin scheduler success.");
 
                 // pre-read count: treadpool-size * trigger-qps (each trigger cost 50ms, qps = 1000/50 = 20)
-                int preReadCount = (XxlJobAdminConfig.getAdminConfig().getTriggerPoolFastMax() + XxlJobAdminConfig.getAdminConfig().getTriggerPoolSlowMax()) * 20;
+                int preReadCountInit = (XxlJobAdminConfig.getAdminConfig().getTriggerPoolFastMax() + XxlJobAdminConfig.getAdminConfig().getTriggerPoolSlowMax()) * 20;
 
                 while (!scheduleThreadToStop) {
+
+                    int preReadCount = preReadCountInit;
 
                     // Scan Job
                     long start = System.currentTimeMillis();
 
-                    Connection conn = null;
-                    Boolean connAutoCommit = null;
-                    PreparedStatement preparedStatement = null;
-
                     boolean preReadSuc = true;
+
                     try {
-
-                        conn = XxlJobAdminConfig.getAdminConfig().getDataSource().getConnection();
-                        connAutoCommit = conn.getAutoCommit();
-                        conn.setAutoCommit(false);
-
-                        preparedStatement = conn.prepareStatement("select * from xxl_job_lock where lock_name = 'schedule_lock' for update");
-                        preparedStatement.execute();
-
-                        // tx start
-
                         // 1、pre read
                         long nowTime = System.currentTimeMillis();
+
                         List<XxlJobInfoEntity> scheduleList = Lists.newArrayList();
+
                         if (XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInitWaitReady()) {
-                            scheduleList = XxlJobAdminConfig.getAdminConfig().getXxlJobInfoDao().scheduleJobQuery(nowTime + PRE_READ_MS, preReadCount);
+                            // 通过 discovery 获取当前服务实例在服务列表中的位置
+                            int startByLocalSortNum = XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInstanceSortNum();
+                            int instanceCount = XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInstanceCount();
+                            preReadCount = preReadCount / instanceCount + (preReadCount % instanceCount);
+
+                            // 根据当前服务实例在服务列表中的位置号分页查询任务记录列表
+                            scheduleList = XxlJobAdminConfig.getAdminConfig().getXxlJobInfoDao().scheduleJobQuery(nowTime + PRE_READ_MS, preReadCount, startByLocalSortNum * preReadCount);
                         }
 
                         if (scheduleList != null && scheduleList.size() > 0) {
-
-                            // eureka *** 分散任务 通过 eureka 获取 xxl-job-admin 实例的数量，让一个实例加载一部分 jobInfo
-                            int instanceCount = XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInstanceCount();
-                            int startByLocalSortNum = XxlJobAdminConfig.getAdminConfig().getClusterManager().getAdminInstanceSortNum();
-                            List<XxlJobInfoEntity> scheduleListDispatched = Lists.newArrayList();
-                            for (int i = startByLocalSortNum; i < scheduleList.size(); i += instanceCount) {
-                                scheduleListDispatched.add(scheduleList.get(i));
-                            }
-
                             // 2、push time-ring
-                            for (XxlJobInfoEntity jobInfo : scheduleListDispatched) {
+                            for (XxlJobInfoEntity jobInfo : scheduleList) {
 
                                 // time-ring jump
                                 if (nowTime > jobInfo.getTriggerNextTime() + PRE_READ_MS) {
@@ -134,7 +120,6 @@ public class JobScheduleHelper {
 
                                         // 3、fresh next
                                         refreshNextValidTime(jobInfo, new Date(jobInfo.getTriggerNextTime()));
-
                                     }
 
                                 } else {
@@ -148,13 +133,11 @@ public class JobScheduleHelper {
 
                                     // 3、fresh next
                                     refreshNextValidTime(jobInfo, new Date(jobInfo.getTriggerNextTime()));
-
                                 }
-
                             }
 
                             // 3、update trigger info
-                            for (XxlJobInfoEntity jobInfo : scheduleListDispatched) {
+                            for (XxlJobInfoEntity jobInfo : scheduleList) {
                                 XxlJobAdminConfig.getAdminConfig().getXxlJobInfoDao().scheduleUpdate(jobInfo);
                             }
 
@@ -162,53 +145,13 @@ public class JobScheduleHelper {
                             preReadSuc = false;
                         }
 
-                        // tx stop
-
-
                     } catch (Exception e) {
                         if (!scheduleThreadToStop) {
                             logger.error(">>>>>>>>>>> xxl-job, JobScheduleHelper#scheduleThread error:{}", e);
                         }
-                    } finally {
-
-                        // commit
-                        if (conn != null) {
-                            try {
-                                conn.commit();
-                            } catch (SQLException e) {
-                                if (!scheduleThreadToStop) {
-                                    logger.error(e.getMessage(), e);
-                                }
-                            }
-                            try {
-                                conn.setAutoCommit(connAutoCommit);
-                            } catch (SQLException e) {
-                                if (!scheduleThreadToStop) {
-                                    logger.error(e.getMessage(), e);
-                                }
-                            }
-                            try {
-                                conn.close();
-                            } catch (SQLException e) {
-                                if (!scheduleThreadToStop) {
-                                    logger.error(e.getMessage(), e);
-                                }
-                            }
-                        }
-
-                        // close PreparedStatement
-                        if (null != preparedStatement) {
-                            try {
-                                preparedStatement.close();
-                            } catch (SQLException e) {
-                                if (!scheduleThreadToStop) {
-                                    logger.error(e.getMessage(), e);
-                                }
-                            }
-                        }
                     }
-                    long cost = System.currentTimeMillis() - start;
 
+                    long cost = System.currentTimeMillis() - start;
 
                     // Wait seconds, align second
                     if (cost < 1000) {  // scan-overtime, not wait
@@ -221,16 +164,15 @@ public class JobScheduleHelper {
                             }
                         }
                     }
-
                 }
 
                 logger.info(">>>>>>>>>>> xxl-job, JobScheduleHelper#scheduleThread stop");
             }
         });
+
         scheduleThread.setDaemon(true);
         scheduleThread.setName("xxl-job, admin JobScheduleHelper#scheduleThread");
         scheduleThread.start();
-
 
         // ring thread
         ringThread = new Thread(new Runnable() {

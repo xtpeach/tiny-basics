@@ -43,7 +43,7 @@ public interface XxlJobInfoDao extends BaseMapper<XxlJobInfoEntity> {
 
 	int findAllCount();
 
-	List<XxlJobInfoEntity> scheduleJobQuery(@Param("maxNextTime") long maxNextTime, @Param("pagesize") int pagesize );
+	List<XxlJobInfoEntity> scheduleJobQuery(@Param("maxNextTime") long maxNextTime, @Param("pagesize") int pagesize, @Param("offset") int offset);
 
 	int scheduleUpdate(XxlJobInfoEntity xxlJobInfo);
 

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * @author xuxueli 2018-10-28 00:38:13
+ * @author xtpeach
  */
 @EnableFeignClients(basePackages = {
         "com.xxl.job.core.biz.client"

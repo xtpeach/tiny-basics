@@ -140,7 +140,10 @@ public class NacosClusterManager implements ClusterManager {
      */
     @Override
     public Integer getAdminInstanceSortNum() {
-        List<String> instanceIdList = serviceInstanceList.stream().map(serviceInstance -> serviceInstance.getInstanceId()).collect(Collectors.toList());
+        List<String> instanceIdList = serviceInstanceList.stream()
+                .map(serviceInstance -> instance.getIp() + ":" + instance.getService() + ":" + instance.getPort())
+                .collect(Collectors.toList());
+        Collections.sort(instanceIdList);
         if (CollectionUtils.isEmpty(instanceIdList) || instanceIdList.size() == 1) {
             return 0;
         }
