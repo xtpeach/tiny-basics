@@ -60,3 +60,4 @@ services:
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone:ro
       - /home/logs:/home/logs
+      - /home/logs/oom/{project.name}:/home/logs/oom/{project.name}
