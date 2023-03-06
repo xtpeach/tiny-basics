@@ -45,8 +45,8 @@
         <!-- module version -->
         <tiny-basics-common.version>${tiny-basics.version}</tiny-basics-common.version>
         <tiny-basics-core.version>${tiny-basics.version}</tiny-basics-core.version>
-        <tiny-basics-controller-http.version>${tiny-basics.version}</tiny-basics-controller-http.version>
-        <tiny-basics-controller-dubbo.version>${tiny-basics.version}</tiny-basics-controller-dubbo.version>
+
+        <!-- ui & api -->
         <tiny-basics-ui.version>${tiny-basics.version}</tiny-basics-ui.version>
         <tiny-basics-api-server-http.version>${tiny-basics.version}</tiny-basics-api-server-http.version>
         <tiny-basics-api-server-dubbo.version>${tiny-basics.version}</tiny-basics-api-server-dubbo.version>
