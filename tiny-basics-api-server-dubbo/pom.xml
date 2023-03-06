@@ -21,10 +21,16 @@
 
     <!-- dependencies -->
     <dependencies>
-        <!-- com-xtpeach [tiny-basics-common] -->
+        <!-- com-xtpeach [tiny-basics-core] -->
         <dependency>
             <groupId>com.xtpeach</groupId>
-            <artifactId>tiny-basics-controller-dubbo</artifactId>
+            <artifactId>tiny-basics-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- com-xtpeach [tiny-file-common] -->

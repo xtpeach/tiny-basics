@@ -102,18 +102,6 @@
                 <version>${tiny-basics-core.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.xtpeach</groupId>
-                <artifactId>tiny-basics-controller-http</artifactId>
-                <version>${tiny-basics-controller-http.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.xtpeach</groupId>
-                <artifactId>tiny-basics-controller-dubbo</artifactId>
-                <version>${tiny-basics-controller-dubbo.version}</version>
-            </dependency>
-
             <!-- xxl job -->
             <dependency>
                 <groupId>com.xuxueli</groupId>

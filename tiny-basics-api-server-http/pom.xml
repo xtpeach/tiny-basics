@@ -27,6 +27,12 @@
             <artifactId>tiny-basics-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- com-xtpeach [tiny-file-common] -->
         <dependency>
             <groupId>com.xtpeach</groupId>
