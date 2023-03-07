@@ -1,4 +1,4 @@
-package com.xtpeach.tiny.basics.api.server.restful;
+package com.xtpeach.tiny.basics.api.server.controller;
 
 import com.xtpeach.tiny.basics.common.response.Response;
 import com.xtpeach.tiny.id.utils.TinyId;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api")
-public class ApiTinyRestfulController {
+public class ApiController {
 
     @PostMapping(value = "query")
     public Response<String> query() {
@@ -19,7 +19,7 @@ public class ApiTinyRestfulController {
     @GetMapping(value = "id/next")
     public Response<Long> next() {
         // 调用 tiny-id 获取 id
-        Long nextId = TinyId.nextId("tiny-id");
+        Long nextId = TinyId.nextId("test");
         return Response.success(nextId);
     }
 
