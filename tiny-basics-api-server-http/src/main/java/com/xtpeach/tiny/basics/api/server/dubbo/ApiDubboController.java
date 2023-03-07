@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/dubbo")
-public class ApiTinyRestfulDubboController {
+public class ApiDubboController {
 
     @DubboReference
     private TinyBasicsInitHisService tinyBasicsInitHisService;
