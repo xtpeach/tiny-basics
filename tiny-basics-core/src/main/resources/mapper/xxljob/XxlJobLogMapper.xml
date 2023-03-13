@@ -166,7 +166,7 @@
 		WHERE trigger_time BETWEEN #{from} and #{to}
     </select>
 
-	<select id="findClearLogIds" resultType="long" >
+	<select id="findClearLogIds" resultType="string" >
 		SELECT id FROM xxl_job_log
 		<trim prefix="WHERE" prefixOverrides="AND | OR" >
 			<if test="jobGroup != null and jobGroup != '' and jobGroup != '-1' and jobGroup != '0'.toString()">
@@ -208,7 +208,7 @@
 		</foreach>
 	</delete>
 
-	<select id="findFailJobLogIds" resultType="long" >
+	<select id="findFailJobLogIds" resultType="string" >
         SELECT id
         FROM xxl_job_log
         WHERE (
@@ -228,7 +228,7 @@
 		WHERE id= #{logId} AND alarm_status = #{oldAlarmStatus}
 	</update>
 
-	<select id="findLostJobIds" resultType="long" >
+	<select id="findLostJobIds" resultType="string" >
 		SELECT
 			t.id
 		FROM
