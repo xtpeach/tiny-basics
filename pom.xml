@@ -14,6 +14,7 @@
 
         <!-- server -->
         <module>tiny-basics-ui</module>
+        <module>tiny-basics-kettle-ui</module>
         <module>tiny-basics-api-server-http</module>
         <module>tiny-basics-api-server-dubbo</module>
 
@@ -48,6 +49,7 @@
 
         <!-- ui & api -->
         <tiny-basics-ui.version>${tiny-basics.version}</tiny-basics-ui.version>
+        <tiny-basics-kettle-ui.version>${tiny-basics.version}</tiny-basics-kettle-ui.version>
         <tiny-basics-api-server-http.version>${tiny-basics.version}</tiny-basics-api-server-http.version>
         <tiny-basics-api-server-dubbo.version>${tiny-basics.version}</tiny-basics-api-server-dubbo.version>
 
