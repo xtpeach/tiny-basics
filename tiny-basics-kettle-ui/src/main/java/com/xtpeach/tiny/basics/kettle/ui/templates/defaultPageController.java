@@ -19,7 +19,7 @@ public class defaultPageController {
     @GetMapping(value = "/")
     public void index(HttpServletResponse response) {
         response.setStatus(302);
-        response.setHeader("Location", "./views/index.html");
+        response.setHeader("Location", "./index/page");
     }
 
 }
