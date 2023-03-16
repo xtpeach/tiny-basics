@@ -40,7 +40,7 @@ spring:
 
   #application
   application:
-    name: ${APPLICATION_NAME:tiny-basics-kettle-ui}
+    name: ${APPLICATION_NAME:tiny-kettle-ui}
 
   #main
   main:
