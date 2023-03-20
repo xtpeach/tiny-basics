@@ -74,6 +74,27 @@
             console.log(obj);
             var data = obj.data;
             if (obj.event === 'createTask') {
+                // -- create task
+                // $.ajax({
+                //     type: "post",
+                //     data: JSON.stringify(data.field),
+                //     url: "http://einvitation.xtpeach.com/xtpeach/einvitation/save/content",
+                //     contentType: "application/json; charset=utf-8",
+                //     success: function (res) {
+                //         console.log("保存成功", "content", res);
+                //         layer.msg('保存成功！', {icon: 6});
+                //         form.val('content', {
+                //             "id": res.id
+                //         });
+                //         layer.close(load);
+                //     },
+                //     error: function (err) {
+                //         console.log("保存失败", err);
+                //         layer.msg('保存失败！', {icon: 5});
+                //         layer.close(load);
+                //     }
+                // });
+
                 //执行重载
                 table.reload('kettle-table-page', {
                     // where: field
