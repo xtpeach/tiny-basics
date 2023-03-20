@@ -5,6 +5,8 @@ import com.xxl.job.core.executor.XxlJobExecutor;
 import com.xxl.job.core.glue.GlueFactory;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.registry.UpdateWeightManager;
+import com.xxl.job.core.util.JobHandlerSplitUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -82,7 +84,7 @@ public class XxlJobSpringExecutor extends XxlJobExecutor implements ApplicationC
             } catch (Throwable ex) {
                 logger.error("xxl-job method-jobhandler resolve error for bean[" + beanDefinitionName + "].", ex);
             }
-            if (annotatedMethods==null || annotatedMethods.isEmpty()) {
+            if (annotatedMethods == null || annotatedMethods.isEmpty()) {
                 continue;
             }
 
@@ -91,7 +93,11 @@ public class XxlJobSpringExecutor extends XxlJobExecutor implements ApplicationC
                 XxlJob xxlJob = methodXxlJobEntry.getValue();
                 // regist
                 registJobHandler(xxlJob, bean, executeMethod);
-                updateWeightManager.addXxlJobHandlerList(xxlJob.value());
+                if (StringUtils.isNotBlank(xxlJob.cron())) {
+                    updateWeightManager.addXxlJobHandlerList(xxlJob.value() + JobHandlerSplitUtil.JOB_HANDLER_SPLIT + xxlJob.cron());
+                } else {
+                    updateWeightManager.addXxlJobHandlerList(xxlJob.value());
+                }
             }
         }
     }

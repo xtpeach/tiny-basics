@@ -16,7 +16,7 @@ public interface JobInfoFeignClient {
     @ResponseBody
     Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,
                                  @RequestParam(required = false, defaultValue = "10") int length,
-                                 String jobInfoId, String jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author);
+                                 String jobInfoId, String jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author, String executorParam);
 
     @PostMapping("/add")
     @ResponseBody

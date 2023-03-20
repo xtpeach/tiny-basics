@@ -1,5 +1,7 @@
 package com.xtpeach.tiny.basics.common.page;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.pagehelper.IPage;
 import com.google.common.base.CaseFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author xtpeach
  */
 @Data
-public abstract class IPageWebAdaptor implements IPage {
+public abstract class IPageWebAdaptor<T> implements IPage {
 
     /**
      * 当前查询的页码
@@ -67,4 +69,11 @@ public abstract class IPageWebAdaptor implements IPage {
         }
         return null;
     }
+
+    @JsonIgnore
+    @Schema(hidden = true)
+    public QueryWrapper<T> getQueryWrapper() {
+        return new QueryWrapper<T>();
+    }
+
 }

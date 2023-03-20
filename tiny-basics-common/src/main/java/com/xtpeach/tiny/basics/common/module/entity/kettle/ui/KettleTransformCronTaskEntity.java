@@ -20,6 +20,7 @@ import javax.persistence.Table;
  * 字段：create_time timestamp (6)                      创建时间
  * 字段：update_time timestamp (6)                      更新时间
  * 字段：ktr_name varchar (2000)           not null     ktr文件名
+ * 字段：ktr_desc varchar (2000)                        ktr文件描述
  * 字段：ktr_path varchar (2000)           not null     ktr文件路径
  * 字段：xxl_job_task_id varchar (32)                   任务编码
  * ------------------------------------------------------------
@@ -57,17 +58,24 @@ public class KettleTransformCronTaskEntity extends BaseEntity {
     private String ktrName;
 
     /**
+     * 转化文件描述
+     */
+    @Column(name = "ktr_desc", length = 2000, nullable = true)
+    @Excel(name = "ktr_desc", orderNum = "4")
+    private String ktrDesc;
+
+    /**
      * 转化文件路径
      */
     @Column(name = "ktr_path", length = 2000, nullable = false)
-    @Excel(name = "ktr_path", orderNum = "4")
+    @Excel(name = "ktr_path", orderNum = "5")
     private String ktrPath;
 
     /**
      * 转化任务编码
      */
-    @Column(name = "xxl_job_task_id", length = 32, nullable = false)
-    @Excel(name = "xxl_job_task_id", orderNum = "5")
+    @Column(name = "xxl_job_task_id", length = 32, nullable = true)
+    @Excel(name = "xxl_job_task_id", orderNum = "6")
     private String xxlJobTaskId;
 
 }

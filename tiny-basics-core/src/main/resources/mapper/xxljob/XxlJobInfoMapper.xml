@@ -87,6 +87,9 @@
 			<if test="author != null and author != ''">
 				AND t.author like CONCAT(CONCAT('%', #{author}), '%')
 			</if>
+            <if test="executorParam != null and executorParam != ''">
+                AND t.executor_param like CONCAT(CONCAT('%', #{executorParam}), '%')
+            </if>
 		</trim>
 		ORDER BY create_time DESC
         LIMIT #{pagesize}
@@ -112,6 +115,9 @@
 			<if test="author != null and author != ''">
 				AND t.author like CONCAT(CONCAT('%', #{author}), '%')
 			</if>
+            <if test="executorParam != null and executorParam != ''">
+                AND t.executor_param like CONCAT(CONCAT('%', #{executorParam}), '%')
+            </if>
 		</trim>
 	</select>
 

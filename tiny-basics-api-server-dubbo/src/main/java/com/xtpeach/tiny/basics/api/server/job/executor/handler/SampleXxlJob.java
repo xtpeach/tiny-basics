@@ -25,7 +25,7 @@ public class SampleXxlJob {
     /**
      * 示例 处理器
      */
-    @XxlJob("demoJobHandler")
+    @XxlJob(value = "demoJobHandler")
     public void demoJobHandler() throws Exception {
         logger.debug("demoJobHandler > job handler > 任务开始");
         String jobParam = XxlJobHelper.getJobParam();
@@ -44,7 +44,7 @@ public class SampleXxlJob {
     /**
      * 测试 处理器
      */
-    @XxlJob("testJobHandler")
+    @XxlJob(value = "testJobHandler")
     public void testJobHandler() throws Exception {
         logger.debug("testJobHandler > job handler > 任务开始");
         String jobParam = XxlJobHelper.getJobParam();

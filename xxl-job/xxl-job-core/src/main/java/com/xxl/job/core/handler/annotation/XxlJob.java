@@ -13,9 +13,15 @@ import java.lang.annotation.*;
 public @interface XxlJob {
 
     /**
-     * jobhandler name
+     * jobHandler name
      */
     String value();
+
+    /**
+     * jobHandler cron
+     * @return
+     */
+    String cron() default "";
 
     /**
      * init handler, invoked when JobThread init

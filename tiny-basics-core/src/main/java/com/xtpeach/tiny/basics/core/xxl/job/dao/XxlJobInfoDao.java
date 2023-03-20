@@ -22,7 +22,8 @@ public interface XxlJobInfoDao extends BaseMapper<XxlJobInfoEntity> {
 									 @Param("triggerStatus") int triggerStatus,
 									 @Param("jobDesc") String jobDesc,
 									 @Param("executorHandler") String executorHandler,
-									 @Param("author") String author);
+									 @Param("author") String author,
+                                     @Param("executorParam") String executorParam);
 
 	int pageListCount(@Param("offset") int offset,
 							 @Param("pagesize") int pagesize,
@@ -31,7 +32,8 @@ public interface XxlJobInfoDao extends BaseMapper<XxlJobInfoEntity> {
 							 @Param("triggerStatus") int triggerStatus,
 							 @Param("jobDesc") String jobDesc,
 							 @Param("executorHandler") String executorHandler,
-							 @Param("author") String author);
+							 @Param("author") String author,
+                             @Param("executorParam") String executorParam);
 	
 	XxlJobInfoEntity loadById(@Param("id") String id);
 	

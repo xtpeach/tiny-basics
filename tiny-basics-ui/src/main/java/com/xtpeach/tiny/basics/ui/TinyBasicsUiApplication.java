@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         "com.xtpeach.tiny.basics.core.ui.repo.executor",
 
         // ui
+        "com.xtpeach.tiny.basics.core.ui",
         "com.xtpeach.tiny.basics.ui"
 })
 

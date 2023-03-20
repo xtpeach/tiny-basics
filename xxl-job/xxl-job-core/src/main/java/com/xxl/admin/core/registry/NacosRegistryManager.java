@@ -11,6 +11,7 @@ import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobInfoDao;
 import com.xtpeach.tiny.basics.core.xxl.job.dao.XxlJobRegistryDao;
 import com.xxl.admin.core.route.strategy.ExecutorRouteWeight;
 import com.xxl.job.core.registry.UpdateWeightManager;
+import com.xxl.job.core.util.JobHandlerSplitUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -207,6 +208,11 @@ public class NacosRegistryManager {
                 // 保存更新[任务信息]
                 List<String> jobHandlerList = clusterManager.buildJobHandlerList(xxlJobGroupEntity);
                 jobHandlerList.stream().forEach(jobHandler -> {
+                    String cron = null;
+                    if (StringUtils.contains(jobHandler, JobHandlerSplitUtil.JOB_HANDLER_SPLIT)) {
+                        cron = StringUtils.split(jobHandler, JobHandlerSplitUtil.JOB_HANDLER_SPLIT)[1];
+                        jobHandler = StringUtils.split(jobHandler, JobHandlerSplitUtil.JOB_HANDLER_SPLIT)[0];
+                    }
                     QueryWrapper<XxlJobInfoEntity> queryWrapper = new QueryWrapper<>();
                     queryWrapper.lambda().eq(XxlJobInfoEntity::getAuthor, serviceName);
                     queryWrapper.lambda().eq(XxlJobInfoEntity::getExecutorHandler, jobHandler);
@@ -223,7 +229,13 @@ public class NacosRegistryManager {
                         xxlJobInfoEntity.setJobDesc(serviceName + "-自动注册任务");
                         xxlJobInfoEntity.setJobGroup(xxlJobGroupEntity.getAppName());
                         xxlJobInfoEntity.setMisfireStrategy(StringUtils.upperCase("DO_NOTHING"));
-                        xxlJobInfoEntity.setScheduleType(StringUtils.upperCase("NONE"));
+                        if (StringUtils.isNotBlank(cron)) {
+                            xxlJobInfoEntity.setScheduleType(StringUtils.upperCase("CRON"));
+                            xxlJobInfoEntity.setScheduleConf(cron);
+                            xxlJobInfoEntity.setTriggerStatus(1);
+                        } else {
+                            xxlJobInfoEntity.setScheduleType(StringUtils.upperCase("NONE"));
+                        }
                         xxlJobInfoEntity.setGlueUpdatetime(DateTime.now().toDate());
                         xxlJobInfoDao.insert(xxlJobInfoEntity);
                     }

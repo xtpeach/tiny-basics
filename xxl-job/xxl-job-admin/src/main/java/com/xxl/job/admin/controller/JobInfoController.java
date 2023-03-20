@@ -103,9 +103,9 @@ public class JobInfoController {
     @ResponseBody
     public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,
                                         @RequestParam(required = false, defaultValue = "10") int length,
-                                        String jobInfoId, String jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author) {
+                                        String jobInfoId, String jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author, String executorParam) {
 
-        return xxlJobService.pageList(start, length, jobInfoId, jobGroup, triggerStatus, jobDesc, executorHandler, author);
+        return xxlJobService.pageList(start, length, jobInfoId, jobGroup, triggerStatus, jobDesc, executorHandler, author, executorParam);
     }
 
     @PostMapping("/add")

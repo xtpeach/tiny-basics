@@ -23,7 +23,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         "com.xtpeach.tiny.basics.core.init.service",
         "com.xtpeach.tiny.basics.core.ui.repo.executor",
 
-        // ui
+        // kettle ui
+        "com.xtpeach.tiny.basics.core.kettle.ui",
         "com.xtpeach.tiny.basics.kettle.ui",
 
         // xxl job
@@ -48,7 +49,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // init
         "com.xtpeach.tiny.basics.common.module.entity.init",
 
-        // ui
+        // kettle ui
         "com.xtpeach.tiny.basics.common.module.entity.kettle.ui"
 })
 

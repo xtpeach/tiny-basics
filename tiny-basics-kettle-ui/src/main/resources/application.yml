@@ -59,7 +59,7 @@ spring:
   datasource:
     defaultDb: enable
     driver: org.postgresql.Driver
-    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/tiny-ui}
+    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/tiny-kettle-ui}
     repositoryName: ${DATASOURCE_REPOSITORY_NAME:postgres}
     repositoryWord: ${DATASOURCE_REPOSITORY_WORD:12345678}
     # datasource-pool
@@ -150,6 +150,11 @@ xxl:
       title: kettle
       logpath: /home/logs/job-kettle-server-log
       logretentiondays: 7
+
+# ktr file path
+ktr:
+  file:
+    path: /home/ktr
 
 # swagger开关
 swagger:

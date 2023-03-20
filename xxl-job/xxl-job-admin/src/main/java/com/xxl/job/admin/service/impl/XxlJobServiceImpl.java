@@ -44,11 +44,11 @@ public class XxlJobServiceImpl implements XxlJobService {
 	private XxlJobLogReportDao xxlJobLogReportDao;
 
 	@Override
-	public Map<String, Object> pageList(int start, int length, String jobInfoId, String jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author) {
+	public Map<String, Object> pageList(int start, int length, String jobInfoId, String jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author, String executorParam) {
 
 		// page list
-		List<XxlJobInfoEntity> list = xxlJobInfoDao.pageList(start, length, jobInfoId, jobGroup, triggerStatus, jobDesc, executorHandler, author);
-		int list_count = xxlJobInfoDao.pageListCount(start, length, jobInfoId, jobGroup, triggerStatus, jobDesc, executorHandler, author);
+		List<XxlJobInfoEntity> list = xxlJobInfoDao.pageList(start, length, jobInfoId, jobGroup, triggerStatus, jobDesc, executorHandler, author, executorParam);
+		int list_count = xxlJobInfoDao.pageListCount(start, length, jobInfoId, jobGroup, triggerStatus, jobDesc, executorHandler, author, executorParam);
 
 		// package result
 		Map<String, Object> maps = new HashMap<String, Object>();
