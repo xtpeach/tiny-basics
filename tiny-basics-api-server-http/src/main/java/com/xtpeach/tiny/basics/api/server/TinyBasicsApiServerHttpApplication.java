@@ -79,7 +79,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         // tiny basics
         "com.xtpeach.tiny.basics.common.feign",
 
-        // xxl-job
+        // xxl-job client
         "com.xxl.job.core.biz.client",
 
         // tiny-file

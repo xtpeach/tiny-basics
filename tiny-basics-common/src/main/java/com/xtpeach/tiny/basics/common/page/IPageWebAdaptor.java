@@ -70,10 +70,4 @@ public abstract class IPageWebAdaptor<T> implements IPage {
         return null;
     }
 
-    @JsonIgnore
-    @Schema(hidden = true)
-    public QueryWrapper<T> getQueryWrapper() {
-        return new QueryWrapper<T>();
-    }
-
 }

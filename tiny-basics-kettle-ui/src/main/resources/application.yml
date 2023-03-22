@@ -159,3 +159,8 @@ ktr:
 # swagger开关
 swagger:
   show: ${SWAGGER_SHOW:true}
+
+# log
+logging:
+  level:
+    com.xtpeach.tiny.basics.core.kettle.ui.dao: debug

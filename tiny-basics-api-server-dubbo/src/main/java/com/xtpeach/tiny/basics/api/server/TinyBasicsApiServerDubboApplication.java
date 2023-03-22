@@ -74,7 +74,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * feign client
  */
 @EnableFeignClients(basePackages = {
-        // xxl-job
+        // xxl-job client
         "com.xxl.job.core.biz.client",
 
         // tiny-file
