@@ -12,6 +12,7 @@ import com.xxl.job.core.feign.JobFeignClient;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +52,7 @@ public class KettleController {
         param.setId(id);
         param.setXxlJobTaskId(xxlJobTaskId);
         param.setKtrName(ktrName);
-        param.setKtrName(ktrDesc);
+        param.setKtrDesc(ktrDesc);
         param.setCreateTime(createTime);
         param.setUpdateTime(updateTime);
         PageInfoVo<KettleTransformCronTaskVo> kettleTransformCronTaskVoPageInfoVo
@@ -86,9 +87,9 @@ public class KettleController {
             String xxlJobId = returnT.getContent();
             kettleTransformCronTaskEntity.setXxlJobTaskId(xxlJobId);
             kettleTransformCronTaskEntityService.updateById(kettleTransformCronTaskEntity);
-            return Response.success("创建任务成功");
+            return Response.success("创建任务成功，任务编码：" + xxlJobId);
         } else {
-            return Response.fail("创建任务失败");
+            return Response.fail("创建任务失败，" + returnT.getMsg());
         }
     }
 
@@ -96,10 +97,15 @@ public class KettleController {
     public Response<Boolean> update(@RequestBody KettleTransformCronTaskVo kettleTransformCronTaskVo) {
         if (StringUtils.isNotBlank(kettleTransformCronTaskVo.getId())) {
             KettleTransformCronTaskEntity kettleTransformCronTaskEntity = kettleTransformCronTaskEntityService.getById(kettleTransformCronTaskVo.getId());
-            kettleTransformCronTaskEntity.setKtrDesc(kettleTransformCronTaskVo.getKtrDesc());
-            return Response.success(kettleTransformCronTaskEntityService.updateById(kettleTransformCronTaskEntity));
+            if (ObjectUtils.isNotEmpty(kettleTransformCronTaskEntity)) {
+                kettleTransformCronTaskEntity.setKtrDesc(kettleTransformCronTaskVo.getKtrDesc());
+                kettleTransformCronTaskEntity.setUpdateTime(DateTime.now().toDate());
+                return Response.success(kettleTransformCronTaskEntityService.updateById(kettleTransformCronTaskEntity));
+            } else {
+                return Response.fail("更新失败，该对象不存在");
+            }
         } else {
-            return Response.fail("更新失败");
+            return Response.fail("更新失败，对象ID为空");
         }
     }
 
@@ -121,10 +127,10 @@ public class KettleController {
                 });
                 return Response.success(true);
             } else {
-                return Response.fail("删除失败");
+                return Response.fail("删除失败，文件名不存在");
             }
         } else {
-            return Response.fail("删除失败");
+            return Response.fail("删除失败，对象ID为空");
         }
     }
 

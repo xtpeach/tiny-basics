@@ -9,11 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/index")
-public class IndexController {
+public class IndexPageController {
 
+    /**
+     * 主页
+     *
+     * @return
+     */
     @GetMapping(value = "/page")
     public String index() {
         return "index/index";
+    }
+
+    /**
+     * 控制台
+     *
+     * @return
+     */
+    @GetMapping(value = "/console")
+    public String console() {
+        return "index/console";
     }
 
 }

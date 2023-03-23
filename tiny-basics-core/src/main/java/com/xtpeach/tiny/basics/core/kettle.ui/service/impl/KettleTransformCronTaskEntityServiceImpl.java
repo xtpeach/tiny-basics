@@ -26,6 +26,9 @@ public class KettleTransformCronTaskEntityServiceImpl
      */
     @Override
     public PageInfoVo<KettleTransformCronTaskVo> queryByPage(KettleTransformCronTaskParam queryParam) {
+        // 更新时间倒序排序
+        queryParam.getQueryWrapper().lambda().orderByDesc(KettleTransformCronTaskEntity::getUpdateTime);
+
         // 查询分页数据
         return PageHelperUtil.doSelect(queryParam,
                 () -> baseMapper.selectList(queryParam.getQueryWrapper()),
