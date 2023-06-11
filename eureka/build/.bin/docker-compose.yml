@@ -1,4 +1,5 @@
 version: '3.2'
+
 services:
   {project.name}:
     container_name: {project.name}

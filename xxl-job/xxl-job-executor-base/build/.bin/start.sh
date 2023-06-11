@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # jvm参数设置
 #-Duser.timezone=Asia/Shanghai
 #-Dclient.encoding.override=UTF-8

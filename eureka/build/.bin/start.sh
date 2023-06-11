@@ -1,5 +1,4 @@
 #!/bin/bash
-
 CONFIG_FILE=/opt/app/app.conf
 
 # Xms 最小; Xmx 最大; Xmn 年轻态堆大小; MetaspaceSize 元数据区大小; Xss 置每个线程的堆栈大小;

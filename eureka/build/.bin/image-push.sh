@@ -1,3 +1,4 @@
+#!/bin/bash
 repo=registry.cn-hangzhou.aliyuncs.com/lanxy88
 echo "Commit Docker Image ({project.name}:{project.version}) to Nexus Repository (${repo})"
 docker login ${repo}
