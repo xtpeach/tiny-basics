@@ -1,4 +1,4 @@
-﻿#docker pull openjdk:8-jdk-alpine
+#docker pull openjdk:8-jdk-alpine
 FROM openjdk:8-jdk-alpine
 MAINTAINER xtpeach
 ADD app/{project.name}-{project.version}.jar app.jar
