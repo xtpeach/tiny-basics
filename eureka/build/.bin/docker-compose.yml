@@ -7,7 +7,7 @@ services:
     privileged: true
     restart: unless-stopped
     ports:
-      - 8761:8761
+      - 38761:38761
     environment:
       # jvm参数设置
       #-Duser.timezone=Asia/Shanghai
