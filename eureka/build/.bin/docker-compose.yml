@@ -5,7 +5,7 @@ services:
     container_name: {project.name}
     image: {project.name}:{project.version}
     privileged: true
-    restart: unless-stopped
+    restart: always
     ports:
       - 38761:38761
     environment:
