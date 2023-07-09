@@ -78,9 +78,9 @@ spring:
   datasource:
     defaultDb: enable
     driver: org.postgresql.Driver
-    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/api-server-http}
+    url: ${DATASOURCE_URL:jdbc:postgresql://192.168.96.128:5432/api-server-http}
     repositoryName: ${DATASOURCE_REPOSITORY_NAME:postgres}
-    repositoryWord: ${DATASOURCE_REPOSITORY_WORD:12345678}
+    repositoryWord: ${DATASOURCE_REPOSITORY_WORD:postgresql!123456}
     # datasource-pool
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -102,9 +102,9 @@ spring:
 
   # redis
   redis:
-    host: ${REDIS_HOST:127.0.0.1}
+    host: ${REDIS_HOST:192.168.96.128}
     port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD:admin1!3}
+    password: ${REDIS_PASSWORD:redis!123456}
     database: ${REDIS_DATABASE:0}
     jedis:
       pool:
@@ -115,7 +115,7 @@ spring:
 
   # kafka
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9093}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:192.168.96.128:9092}
 
   # jackson
   jackson:
