@@ -8,7 +8,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_CLIENT_SERVICEURL:http://eureka_admin:eureka_admin1!3@127.0.0.1:8761/eureka/}
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL:http://eureka_admin:eureka_admin1!3@eureka:38761/eureka/}
     registry-fetch-interval-seconds: 5
     instance-info-replication-interval-seconds: 5
     initial-instance-info-replication-interval-seconds: 5
@@ -78,9 +78,9 @@ spring:
   datasource:
     defaultDb: enable
     driver: org.postgresql.Driver
-    url: ${DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/api-server-dubbo}
+    url: ${DATASOURCE_URL:jdbc:postgresql://postgresql:5432/api-server-dubbo}
     repositoryName: ${DATASOURCE_REPOSITORY_NAME:postgres}
-    repositoryWord: ${DATASOURCE_REPOSITORY_WORD:12345678}
+    repositoryWord: ${DATASOURCE_REPOSITORY_WORD:postgresql!123456}
     # datasource-pool
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -102,7 +102,7 @@ spring:
 
   # redis
   redis:
-    host: ${REDIS_HOST:127.0.0.1}
+    host: ${REDIS_HOST:redis}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:admin1!3}
     database: ${REDIS_DATABASE:0}
