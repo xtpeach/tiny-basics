@@ -58,7 +58,7 @@ services:
       JAR_OPTS: --logging.path=/home/logs/
     network_mode: "host"
     volumes:
-      - /etc/localtime:/etc/localtime
+      - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /home/logs:/home/logs
       - /home/logs/oom/{project.name}:/home/logs/oom/{project.name}

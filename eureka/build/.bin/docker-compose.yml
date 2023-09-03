@@ -60,7 +60,7 @@ services:
       EUREKA_USER_PASSWORD: eureka_admin1@3
     network_mode: "host"
     volumes:
-      - /etc/localtime:/etc/localtime
+      - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /home/logs:/home/logs
       - /home/logs/oom/{project.name}:/home/logs/oom/{project.name}
