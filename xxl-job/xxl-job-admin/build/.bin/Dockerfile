@@ -1,5 +1,5 @@
-#docker pull openjdk:8-jdk-alpine
-FROM openjdk:8-jdk-alpine
+#docker pull openjdk:8-jdk
+FROM openjdk:8-jdk
 MAINTAINER xtpeach
 ADD app/{project.name}-{project.version}.jar app.jar
 RUN mkdir -p /home/logs/oom/{project.name}
