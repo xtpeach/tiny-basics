@@ -40,7 +40,7 @@ spring:
 
   #application
   application:
-    name: ${APPLICATION_NAME:tiny-basics-ui}
+    name: ${APPLICATION_NAME:tiny_basics_ui}
 
   #main
   main:
